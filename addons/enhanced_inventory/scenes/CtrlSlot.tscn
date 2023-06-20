@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://lobcd68vic1"]
+
+[ext_resource type="PackedScene" uid="uid://d2q8kywmutgbd" path="res://addons/enhanced_inventory/scenes/CtrlStack.tscn" id="1_rtb4a"]
+
+[node name="CtrlSlot" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="CtrlStack" parent="." instance=ExtResource("1_rtb4a")]
+layout_mode = 1
