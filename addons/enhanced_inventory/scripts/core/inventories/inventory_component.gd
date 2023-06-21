@@ -6,7 +6,7 @@ var inventory: Inventory
 
 func initialize_inventory_component(_inventory: Inventory) -> void:
     inventory = _inventory
+	_initialize()
 
-
-func _on_inventory_updated() -> void:
-    pass
+func _initialize() -> void:
+	pass

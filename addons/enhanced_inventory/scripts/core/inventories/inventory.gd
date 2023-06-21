@@ -3,6 +3,7 @@ extends Resource
 class_name Inventory
 
 signal updated
+signal bounded_slot(slot: Slot)
 
 
 ###
@@ -35,6 +36,7 @@ func set_slot(index: int, slot: Slot) -> void:
 
 func bind_slot(slot: Slot) -> void:
 	SignalUtils.connect_if_not_connected(slot.updated, _on_updated)
+	bounded_slot.emit(slot)
 
 func _on_updated() -> void:
 	updated.emit()

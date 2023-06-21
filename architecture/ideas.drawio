@@ -1,13 +1,13 @@
 <mxfile host="65bd71144e">
     <diagram id="H6ZutnI6nvSWIQPuGh3-" name="Page-1">
-        <mxGraphModel dx="1095" dy="634" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="683" dy="541" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
                 <mxCell id="2" value="Resources" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="40" y="40" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="3" value="Composition" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                <mxCell id="3" value="Modular" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="200" y="40" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="4" value="Easy To Use" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
@@ -16,7 +16,7 @@
                 <mxCell id="5" value="Type Safety" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="40" y="140" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="6" value="Features" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                <mxCell id="6" value="Core Features" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="40" y="280" width="520" height="400" as="geometry"/>
                 </mxCell>
                 <mxCell id="7" value="Restricted&lt;br&gt;Inventories/Slots" style="rounded=0;whiteSpace=wrap;html=1;" parent="6" vertex="1">
@@ -44,6 +44,36 @@
                     <mxGeometry x="200" y="280" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="15" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="6" vertex="1">
+                    <mxGeometry x="360" y="280" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="Editor Features" style="swimlane;whiteSpace=wrap;html=1;startSize=23;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="720" width="520" height="400" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="16">
+                    <mxGeometry x="40" y="80" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="Infinite&lt;br&gt;Inventories" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="16">
+                    <mxGeometry x="200" y="80" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="Grid Based Inventories" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="16">
+                    <mxGeometry x="360" y="80" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="Auto Saved Inventories" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="16">
+                    <mxGeometry x="40" y="180" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" value="Binded Slots" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="16">
+                    <mxGeometry x="200" y="180" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="16">
+                    <mxGeometry x="360" y="180" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="16">
+                    <mxGeometry x="40" y="280" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="16">
+                    <mxGeometry x="200" y="280" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="16">
                     <mxGeometry x="360" y="280" width="120" height="60" as="geometry"/>
                 </mxCell>
             </root>
