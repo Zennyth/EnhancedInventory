@@ -1,12 +1,25 @@
 extends InventoryControlComponent
-class_name SlotGenerator
+class_name SlotInstantiator
 
 @export var packed_slot: PackedScene
 
 func _initialize() -> void:
-	inventory.bounded_slot.connect(_on_bounded_slot)
+	inventory.bounded_slot.connect(instantiate_slot)
+	instantiate_on_initialize()
 
-func _on_bounded_slot(slot: Slot) -> void:
+func instantiate_on_initialize() -> void:
+	var ctrl_slots_len := len(ctrl_inventory.ctrl_slots)
+	var slot_difference: int = inventory.length() - ctrl_slots_len
+
+	if slot_difference < 0:
+		return push_warning("%s has more <ControlSlot> than %s" % [ctrl_inventory, inventory])
+	
+	for i in range(slot_difference):
+		instantiate_slot(inventory.get_slot(i + ctrl_slots_len))
+	
+
+
+func instantiate_slot(slot: Slot) -> void:
 	var ctrl_slot: Node = packed_slot.instantiate()
 
 	if not ctrl_slot is SlotControl:

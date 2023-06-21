@@ -5,7 +5,7 @@ signal selected
 signal unselected
 signal clicked
 
-@export var ctrl_stack: StackControl
+@onready var ctrl_stack: StackControl = NodeUtils.find_node(self, StackControl) as StackControl
 
 var slot: Slot:
 	set = set_slot

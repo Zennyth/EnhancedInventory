@@ -22,7 +22,7 @@ func get_slots() -> Array[Slot]:
 
 	return results
 
-func len() -> int:
+func length() -> int:
 	return len(slots)
 
 func get_indexes() -> Array[int]:

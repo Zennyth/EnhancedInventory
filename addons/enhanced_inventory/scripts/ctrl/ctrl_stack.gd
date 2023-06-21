@@ -12,7 +12,7 @@ func set_stack(value) -> void:
 	unbind_stack()
 	stack = value
 	bind_stack()
-	update_ctrl_item()
+	_on_stack_updated()
 
 func bind_stack() -> void:
 	if stack == null:
@@ -32,4 +32,4 @@ func _on_stack_updated() -> void:
 	ctrl_text.text = str(stack.quantity) if stack != null else ""
 
 func update_ctrl_item() -> void:
-	ctrl_item.item = stack.item if !stack.is_empty() else null
+	ctrl_item.item = stack.item if stack != null and !stack.is_empty() else null

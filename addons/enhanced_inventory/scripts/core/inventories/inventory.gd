@@ -4,6 +4,7 @@ class_name Inventory
 
 signal updated
 signal bounded_slot(slot: Slot)
+signal unbounded_slot(slot: Slot)
 
 
 ###
@@ -13,7 +14,6 @@ func _init() -> void:
 	initialize_inventory()
 
 func initialize_inventory() -> void:
-	initialize_inventory_components()
 	initialize_slots()
 
 
@@ -28,6 +28,12 @@ func initialize_slots() -> void:
 func get_slot(_index: int) -> Slot:
 	return null
 
+func append_slot(_slot: Slot) -> void:
+	push_error("This type of inventory isn't expendable.")
+
+func remove_slot(_slot: Slot) -> void:
+	push_error("This type of inventory isn't expendable.")
+
 func set_slot(index: int, slot: Slot) -> void:
 	if slot == null:
 		return push_warning("Can't set null slot at index: ", index)
@@ -38,13 +44,17 @@ func bind_slot(slot: Slot) -> void:
 	SignalUtils.connect_if_not_connected(slot.updated, _on_updated)
 	bounded_slot.emit(slot)
 
+func unbind_slot(slot: Slot) -> void:
+	SignalUtils.disconnect_if_not_connected(slot.updated, _on_updated)
+	unbounded_slot.emit(slot)
+
 func _on_updated() -> void:
 	updated.emit()
 
 func get_slots() -> Array[Slot]:
 	return []
 
-func len() -> int:
+func length() -> int:
 	return -1
 
 func get_indexes() -> Array[int]:
@@ -97,7 +107,12 @@ func pick_up_stack(stack: Stack) -> bool:
 ###
 # COMPONENTS
 ###
-@export var components: Array[InventoryComponent] = []
+@export var components: Array[InventoryComponent] = []:
+	set = set_components
+
+func set_components(value) -> void:
+	components = value
+	initialize_inventory_components()
 
 func initialize_inventory_components() -> void:
 	for component in components:
