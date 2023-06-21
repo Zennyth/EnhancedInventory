@@ -7,7 +7,7 @@ var inventory: Inventory:
 var ctrl_inventory: InventoryControl
 
 func initialize_inventory_control_component(_ctrl_inventory: InventoryControl) -> void:
-    ctrl_inventory = _ctrl_inventory
+	ctrl_inventory = _ctrl_inventory
 	_initialize()
 
 func _initialize() -> void:

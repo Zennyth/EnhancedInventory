@@ -7,14 +7,12 @@ class_name InventoryControl
 
 func set_inventory(value) -> void:
 	inventory = value
-	bind_slots()
+	bind_slots_to_ctrl_slots()
 
 
 @export var components: Array[InventoryControlComponent] = []
 
 func initialize_inventory_control_components() -> void:
-	components = value
-	
 	for component in components:
 		component.initialize_inventory_control_component(self)
 
