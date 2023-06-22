@@ -34,6 +34,27 @@ func _on_updated() -> void:
 
 
 ###
+# INTERFACE
+###
+func accept_item(item: Item) -> bool:
+	return components.all(func(component: SlotComponent): return component.accept_item(item))
+
+
+
+###
+# COMPONENTS
+###
+@export var components: Array[SlotComponent] = []:
+	set = set_components
+
+func set_components(value) -> void:
+	components = value
+	for component in components:
+		component.initialize_slot_component(self)
+
+
+
+###
 # DECORATOR
 # Stack - Item
 ###

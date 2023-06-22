@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bg57iju1xykj7"
-path="res://.godot/imported/icon.png-487276ed1e3a0c39cad0279d744ee560.ctex"
+uid="uid://dgty8l5nbmvn2"
+path="res://.godot/imported/icons8-infinity-24.png-45f303f1f57485bb8da9f6b95683171d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://icon.png"
-dest_files=["res://.godot/imported/icon.png-487276ed1e3a0c39cad0279d744ee560.ctex"]
+source_file="res://addons/enhanced_inventory/icons/icons8-infinity-24.png"
+dest_files=["res://.godot/imported/icons8-infinity-24.png-45f303f1f57485bb8da9f6b95683171d.ctex"]
 
 [params]
 

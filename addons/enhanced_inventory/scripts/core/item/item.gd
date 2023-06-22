@@ -3,6 +3,7 @@ extends Resource
 class_name Item
 
 
+@export var id: String = ""
 @export var name: String = ""
 @export var icon: Texture2D
 @export var description: String = ""
@@ -14,6 +15,14 @@ class_name Item
 		return max_stack_size if is_stackable else 1
 	set(size):
 		max_stack_size = size if is_stackable else 1
+
+
+###
+# INTERFACE
+###
+func equals_to(item: Item) -> bool:
+	return id == item.id
+
 
 
 ###
@@ -36,11 +45,11 @@ func initialize_item_components() -> void:
 		component.initialize_item_component(self)
 
 func has_component(component_class) -> bool:
-	return components.any(func(c): return c.is_instance_of(component_class))
+	return components.any(func(component: ItemComponent): return is_instance_of(component, component_class))
 
 func get_component(component_class) -> ItemComponent:
 	for component in components:
-		if component.is_instance_of(component_class):
+		if is_instance_of(component, component_class):
 			return component
 	
 	return null

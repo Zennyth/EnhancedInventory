@@ -1,7 +1,12 @@
 class_name DictionaryInventory
 extends Inventory
 
-@export var slots: Dictionary = {}
+@export var slots: Dictionary = {}:
+	set = set_slots
+
+func set_slots(value) -> void:
+	slots = value
+	initialize_slots()
 
 
 func get_slot(index) -> Slot:

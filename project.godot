@@ -14,6 +14,10 @@ config/name="Enhanced Inventory"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.png"
 
+[autoload]
+
+InventoriesEventBus="*res://addons/enhanced_inventory/scripts/autoloads/inventories_event_bus.gd"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/enhanced_common/plugin.cfg", "res://addons/enhanced_inventory/plugin.cfg", "res://addons/gd-plug-ui/plugin.cfg")

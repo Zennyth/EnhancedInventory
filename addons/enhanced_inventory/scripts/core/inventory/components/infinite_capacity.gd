@@ -1,4 +1,4 @@
-@icon("res://addons/enhanced_inventory/icons/icons8-save-close-24.png")
+@icon("res://addons/enhanced_inventory/icons/icons8-infinity-24.png")
 extends InventoryComponent
 class_name InfiniteCapacityInventoryComponent
 
@@ -14,7 +14,7 @@ func _initialize() -> void:
 	append_missing_slots()
 
 func append_missing_slots() -> void:
-	if get_number_of_empty_slots() < empty_slot_threshold:
+	if get_number_of_empty_slots() > empty_slot_threshold:
 		return
 	
 	for i in range(amount_to_add):

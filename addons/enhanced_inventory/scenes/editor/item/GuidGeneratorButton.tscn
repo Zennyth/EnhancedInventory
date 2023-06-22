@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://br4vuuioygl0d"]
+
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/editor/item/guid_generator_button.gd" id="1_b87gk"]
+
+[node name="GuidGeneratorButton" type="Button"]
+offset_right = 121.0
+offset_bottom = 40.0
+text = "Generate Guid"
+script = ExtResource("1_b87gk")

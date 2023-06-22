@@ -1,3 +1,4 @@
+@icon("res://addons/enhanced_inventory/icons/icons8-backpack-24-green.png")
 extends Control
 class_name InventoryControl
 
@@ -39,6 +40,7 @@ func add_ctrl_slot(slot: Slot, ctrl_slot: SlotControl) -> void:
 
 func _ready() -> void:
 	bind_slots_to_ctrl_slots()
+	InventoriesEventBus.ctrl_inventory_initialized.emit(self)
 
 
 

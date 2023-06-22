@@ -1,4 +1,4 @@
-@icon("res://addons/enhanced_inventory/icons/icons8-circuit-24.png")
+@icon("res://addons/enhanced_inventory/icons/icons8-circuit-24-green.png")
 extends Resource
 class_name InventoryControlComponent
 

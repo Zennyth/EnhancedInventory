@@ -8,16 +8,6 @@ signal unbounded_slot(slot: Slot)
 
 
 ###
-# INITIALIZATION
-###
-func _init() -> void:
-	initialize_inventory()
-
-func initialize_inventory() -> void:
-	initialize_slots()
-
-
-###
 # CORE
 ###
 func initialize_slots() -> void:
@@ -45,7 +35,7 @@ func bind_slot(slot: Slot) -> void:
 	bounded_slot.emit(slot)
 
 func unbind_slot(slot: Slot) -> void:
-	SignalUtils.disconnect_if_not_connected(slot.updated, _on_updated)
+	SignalUtils.disconnect_if_connected(slot.updated, _on_updated)
 	unbounded_slot.emit(slot)
 
 func _on_updated() -> void:

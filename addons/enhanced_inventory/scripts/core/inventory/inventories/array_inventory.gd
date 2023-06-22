@@ -1,7 +1,13 @@
 class_name ArrayInventory
 extends Inventory
 
-@export var slots: Array[Slot] = []
+@export var slots: Array[Slot] = []:
+	set = set_slots
+
+func set_slots(value) -> void:
+	slots = value
+	initialize_slots()
+
 
 
 func get_slot(index: int) -> Slot:

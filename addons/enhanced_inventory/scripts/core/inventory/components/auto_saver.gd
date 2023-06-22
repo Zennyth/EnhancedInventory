@@ -14,5 +14,10 @@ func _initialize() -> void:
 func _on_inventory_updated() -> void:
 	if computed_path == "" or computed_path == null:
 		return push_warning("Could not find a path for the inventory to be saved !")
-
-	ResourceSaver.save(inventory, computed_path)
+	
+	if inventory.resource_path != "" or inventory.resource_path != null:
+		# TODO: "emit_changed()" doesn't work
+		ResourceSaver.save(inventory, inventory.resource_path)
+		return emit_changed()
+	
+	ResourceSaver.save(inventory, path)

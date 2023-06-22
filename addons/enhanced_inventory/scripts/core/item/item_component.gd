@@ -5,4 +5,8 @@ class_name ItemComponent
 var item: Item
 
 func initialize_item_component(_item: Item) -> void:
-    item = _item
+	item = _item
+	_initialize()
+
+func _initialize() -> void:
+	pass

@@ -31,6 +31,17 @@ func fill_to(add_quantity: int) -> int:
 	quantity = potential_quantity
 	return 0
 
+func split() -> int:
+	if quantity <= 1:
+		return 0
+	
+	var remaining_odd: int = quantity % 2
+	var split_quantity: int = floor(quantity / 2)
+	
+	quantity = split_quantity + remaining_odd
+
+	return split_quantity
+
 
 
 
