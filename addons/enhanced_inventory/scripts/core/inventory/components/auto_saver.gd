@@ -1,3 +1,5 @@
+# This component allows an inventory to be automatically saved upon any of its changes
+@tool
 @icon("res://addons/enhanced_inventory/icons/icons8-save-close-24.png")
 extends InventoryComponent
 class_name AutoSaverInventoryComponent
@@ -8,8 +10,13 @@ class_name AutoSaverInventoryComponent
 var computed_path: String:
 	get: return path if path != "" else inventory.resource_path
 
-func _initialize() -> void:
+
+func _enable() -> void:
 	inventory.updated.connect(_on_inventory_updated)
+
+func _disable() -> void:
+	inventory.updated.disconnect(_on_inventory_updated)
+
 
 func _on_inventory_updated() -> void:
 	if computed_path == "" or computed_path == null:

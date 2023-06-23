@@ -1,10 +1,11 @@
+@tool
 extends InventoryControlComponent
 class_name SlotInstantiator
 
 @export var packed_slot: PackedScene
 
 func _initialize() -> void:
-	inventory.bounded_slot.connect(instantiate_slot)
+	SignalUtils.connect_if_not_connected(inventory.bounded_slot, instantiate_slot)
 	instantiate_on_initialize()
 
 func instantiate_on_initialize() -> void:

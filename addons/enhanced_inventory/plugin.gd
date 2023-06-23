@@ -1,7 +1,7 @@
 @tool
 extends EditorPlugin
 
-const InventoriesEventBus: String = "InventoriesEventBus"
+const EnhancedInventoryEventBus: String = "EnhancedInventoryEventBus"
 
 const InventoryEditorInspector = preload("res://addons/enhanced_inventory/scripts/editor/inventory/inventory_editor_inspector.gd")
 var inventory_editor_inspector: EditorInspectorPlugin
@@ -11,7 +11,7 @@ var item_editor_inspector: ItemEditorInspector
 
 
 func _enter_tree():
-	add_autoload_singleton(InventoriesEventBus, "res://addons/enhanced_inventory/scripts/autoloads/inventories_event_bus.gd")
+	add_autoload_singleton(EnhancedInventoryEventBus, "res://addons/enhanced_inventory/scripts/autoloads/enhanced_inventory_event_bus.gd")
 	
 	inventory_editor_inspector = InventoryEditorInspector.new()
 	add_inspector_plugin(inventory_editor_inspector)
@@ -22,6 +22,6 @@ func _enter_tree():
 
 func _exit_tree():
 	
-	remove_autoload_singleton(InventoriesEventBus)
+	remove_autoload_singleton(EnhancedInventoryEventBus)
 	remove_inspector_plugin(inventory_editor_inspector)
 	remove_inspector_plugin(item_editor_inspector)

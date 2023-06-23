@@ -8,7 +8,7 @@ class_name DragControl
 @onready var ctrl_slot: SlotControl = $SlotControl
 
 func _init() -> void:
-	InventoriesEventBus.ctrl_inventory_initialized.connect(_on_ctrl_inventory_initialized)
+	EnhancedInventoryEventBus.ctrl_inventory_initialized.connect(_on_ctrl_inventory_initialized)
 
 func _ready() -> void:
 	if drag == null:

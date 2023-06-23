@@ -16,7 +16,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-InventoriesEventBus="*res://addons/enhanced_inventory/scripts/autoloads/inventories_event_bus.gd"
+EnhancedInventoryEventBus="*res://addons/enhanced_inventory/scripts/autoloads/enhanced_inventory_event_bus.gd"
 
 [editor_plugins]
 

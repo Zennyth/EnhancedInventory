@@ -1,3 +1,4 @@
+@tool
 @icon("res://addons/enhanced_inventory/icons/icons8-sheets-24-green.png")
 extends Control
 class_name StackControl

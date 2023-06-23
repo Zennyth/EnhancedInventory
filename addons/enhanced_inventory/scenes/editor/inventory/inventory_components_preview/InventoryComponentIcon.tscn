@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://d14eslf0t1e6h"]
+
+[ext_resource type="Texture2D" uid="uid://3ni3s25ifh83" path="res://addons/enhanced_inventory/icons/icons8-backpack-24.png" id="1_806s2"]
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/editor/inventory/inventory_components_preview/inventory_component_icon.gd" id="1_klgeg"]
+
+[node name="InventoryComponentIcon" type="Control"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -24.0
+offset_bottom = 24.0
+grow_horizontal = 0
+tooltip_text = "zerzer"
+script = ExtResource("1_klgeg")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 24.0
+offset_bottom = 24.0
+texture = ExtResource("1_806s2")

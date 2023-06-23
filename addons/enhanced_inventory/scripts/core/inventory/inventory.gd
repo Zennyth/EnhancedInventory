@@ -1,3 +1,4 @@
+@tool
 @icon("res://addons/enhanced_inventory/icons/icons8-backpack-24.png")
 extends Resource
 class_name Inventory
@@ -31,14 +32,14 @@ func set_slot(index: int, slot: Slot) -> void:
 	bind_slot(slot)
 
 func bind_slot(slot: Slot) -> void:
-	SignalUtils.connect_if_not_connected(slot.updated, _on_updated)
+	SignalUtils.connect_if_not_connected(slot.updated, update)
 	bounded_slot.emit(slot)
 
 func unbind_slot(slot: Slot) -> void:
-	SignalUtils.disconnect_if_connected(slot.updated, _on_updated)
+	SignalUtils.disconnect_if_connected(slot.updated, update)
 	unbounded_slot.emit(slot)
 
-func _on_updated() -> void:
+func update() -> void:
 	updated.emit()
 
 func get_slots() -> Array[Slot]:

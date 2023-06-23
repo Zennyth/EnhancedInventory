@@ -1,3 +1,4 @@
+@tool
 @icon("res://addons/enhanced_item/icons/icons8-circuit-24.png")
 extends Resource
 class_name ItemComponent

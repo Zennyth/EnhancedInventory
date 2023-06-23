@@ -1,3 +1,4 @@
+@tool
 @icon("res://addons/enhanced_inventory/icons/icons8-backpack-24-green.png")
 extends Control
 class_name InventoryControl
@@ -14,8 +15,17 @@ func set_inventory(value) -> void:
 @export var components: Array[InventoryControlComponent] = []
 
 func initialize_inventory_control_components() -> void:
+	if !is_initializable:
+		return
+
 	for component in components:
 		component.initialize_inventory_control_component(self)
+
+
+## Still an experimental feature, use it at your own risks
+@export var sync_in_editor: bool = false
+var is_initializable: bool:
+	get: return !Engine.is_editor_hint() or sync_in_editor
 
 
 @onready var ctrl_slots: Array[SlotControl] = fetch_ctrl_slots():
@@ -40,12 +50,15 @@ func add_ctrl_slot(slot: Slot, ctrl_slot: SlotControl) -> void:
 
 func _ready() -> void:
 	bind_slots_to_ctrl_slots()
-	InventoriesEventBus.ctrl_inventory_initialized.emit(self)
+	EnhancedInventoryEventBus.ctrl_inventory_initialized.emit(self)
 
 
 
 func bind_slots_to_ctrl_slots() -> void:
 	if inventory == null or ctrl_slots == null or ctrl_slots.is_empty():
+		return
+	
+	if !is_initializable:
 		return
 	
 	initialize_inventory_control_components()

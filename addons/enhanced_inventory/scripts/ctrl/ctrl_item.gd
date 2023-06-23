@@ -1,3 +1,4 @@
+@tool
 @icon("res://addons/enhanced_inventory/icons/icons8-item-24-green.png")
 extends Control
 class_name ItemControl

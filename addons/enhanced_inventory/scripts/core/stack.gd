@@ -1,3 +1,4 @@
+@tool
 @icon("res://addons/enhanced_inventory/icons/icons8-sheets-24.png")
 extends Resource
 class_name Stack
@@ -7,19 +8,33 @@ signal item_changed
 signal quantity_changed
 
 
+func _init(_item: Item = null, _quantity: int = -1) -> void:
+	if _item != null:
+		item = _item
+	
+	if _quantity != -1:
+		quantity = _quantity
+
+
 @export var item: Item:
 	set(_item):
 		item = _item
 		item_changed.emit()
-		_on_updated()
+		update()
 
 @export var quantity: int:
 	set(_quantity):
 		quantity = _quantity
 		quantity_changed.emit()
-		_on_updated()
+		update()
+
+func update() -> void:
+	updated.emit()
 
 
+###
+# QUANTITY OPERATORS
+###
 func fill_to(add_quantity: int) -> int:
 	var original_quantity := quantity
 	var potential_quantity := original_quantity + add_quantity
@@ -42,11 +57,6 @@ func split() -> int:
 
 	return split_quantity
 
-
-
-
-func _on_updated() -> void:
-	updated.emit()
 
 ###
 # DECORATOR
