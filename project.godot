@@ -20,4 +20,8 @@ EnhancedInventoryEventBus="*res://addons/enhanced_inventory/scripts/autoloads/en
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/enhanced_common/plugin.cfg", "res://addons/enhanced_inventory/plugin.cfg", "res://addons/gd-plug-ui/plugin.cfg")
+enabled=PackedStringArray("res://addons/enhanced_common/plugin.cfg", "res://addons/enhanced_inventory/plugin.cfg", "res://addons/gd-plug-ui/plugin.cfg", "res://addons/gdUnit4/plugin.cfg")
+
+[gdunit4]
+
+settings/test/test_root_folder="../../tests"

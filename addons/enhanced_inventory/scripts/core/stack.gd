@@ -36,12 +36,15 @@ func update() -> void:
 # QUANTITY OPERATORS
 ###
 func fill_to(add_quantity: int) -> int:
+	if add_quantity <= 0:
+		return 0
+
 	var original_quantity := quantity
 	var potential_quantity := original_quantity + add_quantity
 	
 	if potential_quantity > item.max_stack_size:
 		quantity = item.max_stack_size
-		return item.max_stack_size - potential_quantity
+		return potential_quantity - item.max_stack_size
 	
 	quantity = potential_quantity
 	return 0

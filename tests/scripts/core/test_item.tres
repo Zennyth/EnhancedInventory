@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://bd76benm4uxwq"]
+
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/item/item.gd" id="1_co4bm"]
+
+[resource]
+script = ExtResource("1_co4bm")
+id = "72b80c08-90d5-457f-a2b0-7558f210b9c1"
+name = "Test"
+description = ""
+is_collectable = true
+is_stackable = true
+max_stack_size = 10
+components = Array[Resource("res://addons/enhanced_inventory/scripts/core/item/item_component.gd")]([])
