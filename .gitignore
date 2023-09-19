@@ -1,6 +1,5 @@
+!addons/.editorconfig
 # Godot 4+ specific ignores
 .godot/
-.plugged/
 
 addons/enhanced_common/
-addons/gd-plug-ui/

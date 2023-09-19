@@ -18,7 +18,8 @@ config/icon="res://icon.png"
 [autoload]
 
 EnhancedInventoryEventBus="*res://addons/enhanced_inventory/scripts/autoloads/enhanced_inventory_event_bus.gd"
+ClassUtils="*res://addons/enhanced_common/scripts/utils/class_utils.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/enhanced_common/plugin.cfg", "res://addons/enhanced_inventory/plugin.cfg", "res://addons/gd-plug-ui/plugin.cfg")
+enabled=PackedStringArray("res://addons/enhanced_common/plugin.cfg", "res://addons/enhanced_inventory/plugin.cfg")

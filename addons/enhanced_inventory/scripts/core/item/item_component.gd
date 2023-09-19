@@ -7,7 +7,17 @@ var item: Item
 
 func initialize_item_component(_item: Item) -> void:
 	item = _item
-	_initialize()
 
-func _initialize() -> void:
+	item.quantity_changed.connect(_on_item_quantity_changed)
+	_initialize_item_component()
+
+func _initialize_item_component() -> void:
 	pass
+
+
+
+func _on_item_quantity_changed() -> void:
+	pass
+
+func get_multilplayer_spawner_packed_scenes() -> Array[PackedScene]:
+	return []

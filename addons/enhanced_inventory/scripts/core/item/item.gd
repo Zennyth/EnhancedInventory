@@ -7,7 +7,7 @@ class_name Item
 @export var id: String = ""
 @export var name: String = ""
 @export var icon: Texture2D
-@export var description: String = ""
+@export_multiline var description: String = ""
 @export var is_collectable: bool = true
 
 @export var is_stackable: bool = false
@@ -24,16 +24,32 @@ class_name Item
 func equals_to(item: Item) -> bool:
 	return id == item.id
 
+func get_instance() -> Item:
+	var item: Item = duplicate(true)
+	item.initialize_item()
+	return item
+
 
 
 ###
 # INITIALIZATION
 ###
-func _init() -> void:
-	initialize_item()
 
 func initialize_item() -> void:
 	initialize_item_components()
+
+
+###
+# STACK BINIDING
+###
+signal quantity_changed()
+
+var quantity: int:
+	set = set_quantity
+
+func set_quantity(_quantity: int) -> void:
+	quantity = _quantity
+	quantity_changed.emit()
 
 
 ###

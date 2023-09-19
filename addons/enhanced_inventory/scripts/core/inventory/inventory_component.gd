@@ -50,3 +50,10 @@ func _enable() -> void:
 
 func _disable() -> void:
 	pass
+
+
+###
+# UTILS
+###
+func get_owner_component(class_to_find) -> Node:
+	return NodeUtils.find_node(inventory.owner, class_to_find)

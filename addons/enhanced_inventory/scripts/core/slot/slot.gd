@@ -40,14 +40,17 @@ func update() -> void:
 func accepts_item(item: Item) -> bool:
 	return components.all(func(component: SlotComponent): return component.accepts_item(item))
 
+func accepts_stack(stack: Stack) -> bool:
+	return accepts_item(stack.item) and (is_empty() or (is_item_stackable() and get_item().equals_to(stack.get_item())))
+
 func accepts_slot(slot: Slot) -> bool:
-	return slot.is_empty() or accepts_item(slot.get_item())
+	return slot.is_empty() or accepts_stack(slot.stack)
 
 
 ###
 # STACK OPERATORS
 ###
-func pickup_stack(target: Slot) -> bool:
+func pickup_stack(target: Stack) -> bool:
 	if !is_empty() or target.is_empty() or !accepts_item(target.get_item()):
 		return false
 	
@@ -55,24 +58,18 @@ func pickup_stack(target: Slot) -> bool:
 	target.stack = null
 	return true
 
-func unload_stack(target: Slot) -> bool:
-	if is_empty() or !target.accepts_item(get_item()):
-		return false
+func unload_stack(target: Stack) -> int:
+	if target.is_empty() or !accepts_item(target.get_item()):
+		return -1
 	
-	if !target.is_empty():
-		if !target.is_item_stackable() or !target.get_item().equals_to(stack.get_item()):
-			return false
+	if !is_empty():
+		if !is_item_stackable() or !get_item().equals_to(target.get_item()):
+			return -1
 		
-		var remaining_quantity := target.stack.fill_to(stack.quantity)
-		if remaining_quantity == 0:
-			stack = null
-		else:
-			stack.quantity = remaining_quantity
-		return true
+		return stack.fill_to(target.quantity)
 	
-	target.stack = stack
-	stack = null
-	return true
+	stack = stack
+	return 0
 
 func swap_stack(target: Slot) -> bool:
 	if !target.accepts_slot(self) or !accepts_slot(target):
@@ -103,6 +100,15 @@ func split_stack(target: Slot) -> bool:
 
 
 ###
+# SLOT OPERATORS
+###
+func pickup_slot(target: Slot) -> bool:
+	return pickup_stack(target.stack)
+
+func unload_slot(target: Slot) -> int:
+	return unload_stack(target.stack)
+
+###
 # COMPONENTS
 ###
 @export var components: Array[SlotComponent] = []:
@@ -112,6 +118,16 @@ func set_components(value) -> void:
 	components = value
 	for component in components:
 		component.initialize_slot_component(self)
+
+func has_component(component_class) -> bool:
+	return components.any(func(component: SlotComponent): return is_instance_of(component, component_class))
+
+func get_component(component_class) -> SlotComponent:
+	for component in components:
+		if is_instance_of(component, component_class):
+			return component
+	
+	return null
 
 
 ###

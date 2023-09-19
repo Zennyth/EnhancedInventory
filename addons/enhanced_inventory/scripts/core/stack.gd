@@ -17,10 +17,20 @@ func _init(_item: Item = null, _quantity: int = -1) -> void:
 
 
 @export var item: Item:
-	set(_item):
-		item = _item
-		item_changed.emit()
-		update()
+	set = set_item
+
+func set_item(_item: Item) -> void:
+	if item != null:
+		unbind_item()
+
+	item = _item
+
+	if item != null:
+		bind_item()
+	
+	item_changed.emit()
+	update()
+
 
 @export var quantity: int:
 	set(_quantity):
@@ -56,6 +66,21 @@ func split() -> int:
 	quantity = split_quantity + remaining_odd
 
 	return split_quantity
+
+
+###
+# STACK BINIDING
+###
+func bind_item() -> void:
+	sync_item_quantity()
+	quantity_changed.connect(sync_item_quantity)
+
+func unbind_item() -> void:
+	quantity_changed.disconnect(sync_item_quantity)
+	sync_item_quantity(0)
+
+func sync_item_quantity(_quantity: int = quantity) -> void:
+	item.quantity = _quantity
 
 
 ###

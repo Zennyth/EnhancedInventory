@@ -3,6 +3,7 @@
 extends Resource
 class_name Inventory
 
+signal initialized_owner
 signal updated
 signal bounded_slot(slot: Slot)
 signal unbounded_slot(slot: Slot)
@@ -11,8 +12,18 @@ signal unbounded_slot(slot: Slot)
 ###
 # CORE
 ###
+var owner: Node
+
+func initialize_owner(_owner: Node) -> void:
+	owner = _owner
+	initialized_owner.emit()
+
+
 func initialize_slots() -> void:
 	for slot in get_slots():
+		if slot == null:
+			continue
+
 		bind_slot(slot)
 
 
@@ -84,7 +95,7 @@ func set_stack_quantity(index, amount: int) -> int:
 	var slot: Slot = get_slot(index)
 	return slot.stack.fill_to(amount)
 
-func pick_up_stack(stack: Stack) -> bool:
+func pick_up_stack_on_empty_slot(stack: Stack) -> bool:
 	for slot in get_slots():
 		if not slot.is_empty():
 			continue
@@ -94,12 +105,30 @@ func pick_up_stack(stack: Stack) -> bool:
 
 	return false
 
+func pick_up_stack(stack: Stack) -> Stack:
+	if stack.is_empty():
+		return stack
+
+	for slot in get_slots():
+		var remaining_quantity := slot.unload_stack(stack) 
+		
+		if remaining_quantity == -1:
+			continue
+		
+		if remaining_quantity == 0:
+			break
+	
+	return stack
+		
+
+		
+
+
 
 ###
 # COMPONENTS
 ###
-@export var components: Array[InventoryComponent] = []:
-	set = set_components
+@export var components: Array[InventoryComponent] = []
 
 func set_components(value) -> void:
 	components = value
@@ -107,4 +136,7 @@ func set_components(value) -> void:
 
 func initialize_inventory_components() -> void:
 	for component in components:
+		if component == null:
+			continue
+
 		component.initialize_inventory_component(self)
