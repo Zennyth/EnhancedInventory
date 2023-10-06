@@ -1,0 +1,161 @@
+[gd_scene load_steps=21 format=3 uid="uid://chvbqh7700a73"]
+
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/ctrl/inventory/ctrl_inventory.gd" id="1_2dgik"]
+[ext_resource type="Resource" uid="uid://dogr4i4htbm6m" path="res://examples/_shared/resources/inventories/inventory.tres" id="2_p7w4e"]
+[ext_resource type="PackedScene" uid="uid://d32auq1seu5e0" path="res://examples/_shared/scenes/SlotControl.tscn" id="3_jgxc7"]
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/ctrl/inventory/components/slot_instantiator.gd" id="4_wlpm8"]
+[ext_resource type="Texture2D" uid="uid://d2dbl83h5dtpu" path="res://examples/_shared/assets/mounirtohami - GUI/GUI.png" id="5_2wwo4"]
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/ctrl/ctrl_drag.gd" id="6_82dgk"]
+[ext_resource type="Resource" uid="uid://c2jwe0youwqsa" path="res://examples/equipment_inventory/equipment_inventory.tres" id="6_lw3mk"]
+[ext_resource type="PackedScene" uid="uid://qbnejr8g0m43" path="res://examples/equipment_inventory/slots/EquipmentSlotControl.tscn" id="7_3uax6"]
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/slot/slot.gd" id="7_kx3ji"]
+[ext_resource type="Script" path="res://examples/_shared/scripts/equipment_lock_slot.gd" id="8_1b3v7"]
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/drag.gd" id="8_kmhgd"]
+[ext_resource type="PackedScene" uid="uid://chil8hgaxjdp8" path="res://examples/_shared/scenes/StackControl.tscn" id="10_clmpc"]
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/ctrl/slot/ctrl_slot.gd" id="10_qf7th"]
+
+[sub_resource type="Resource" id="Resource_o3e22"]
+script = ExtResource("4_wlpm8")
+packed_slot = ExtResource("3_jgxc7")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qpnty"]
+atlas = ExtResource("5_2wwo4")
+region = Rect2(0, 96, 48, 32)
+
+[sub_resource type="LabelSettings" id="LabelSettings_m181y"]
+font_size = 21
+
+[sub_resource type="Resource" id="Resource_i6u1w"]
+script = ExtResource("8_1b3v7")
+equipment_type = 4
+
+[sub_resource type="Resource" id="Resource_8nruf"]
+script = ExtResource("7_kx3ji")
+components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([SubResource("Resource_i6u1w")])
+
+[sub_resource type="Resource" id="Resource_e6uvq"]
+script = ExtResource("7_kx3ji")
+components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
+
+[sub_resource type="Resource" id="Resource_hk6b2"]
+script = ExtResource("8_kmhgd")
+drag_slot = SubResource("Resource_e6uvq")
+
+[node name="MirrorInventories" type="CanvasLayer"]
+
+[node name="Main" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Main"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Inventory" type="MarginContainer" parent="Main/HBoxContainer" node_paths=PackedStringArray("container")]
+layout_mode = 2
+script = ExtResource("1_2dgik")
+container = NodePath("MarginContainer/VBoxContainer/SlotsContainer")
+inventory = ExtResource("2_p7w4e")
+components = Array[Resource("res://addons/enhanced_inventory/scripts/ctrl/inventory/ctrl_inventory_component.gd")]([SubResource("Resource_o3e22")])
+
+[node name="Background" type="NinePatchRect" parent="Main/HBoxContainer/Inventory"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_qpnty")
+region_rect = Rect2(0, 0, 48, 32)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="Main/HBoxContainer/Inventory"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main/HBoxContainer/Inventory/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Main/HBoxContainer/Inventory/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Inventory"
+label_settings = SubResource("LabelSettings_m181y")
+horizontal_alignment = 1
+
+[node name="SlotsContainer" type="GridContainer" parent="Main/HBoxContainer/Inventory/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 150)
+layout_mode = 2
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+columns = 4
+
+[node name="EquipmentInventory" type="MarginContainer" parent="Main/HBoxContainer" node_paths=PackedStringArray("container")]
+layout_mode = 2
+script = ExtResource("1_2dgik")
+container = NodePath("MarginContainer/VBoxContainer/SlotsContainer")
+inventory = ExtResource("6_lw3mk")
+sync_in_editor = true
+
+[node name="Background" type="NinePatchRect" parent="Main/HBoxContainer/EquipmentInventory"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_qpnty")
+region_rect = Rect2(0, 0, 48, 32)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="Main/HBoxContainer/EquipmentInventory"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main/HBoxContainer/EquipmentInventory/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Main/HBoxContainer/EquipmentInventory/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "EquipmentInventory"
+label_settings = SubResource("LabelSettings_m181y")
+horizontal_alignment = 1
+
+[node name="SlotsContainer" type="GridContainer" parent="Main/HBoxContainer/EquipmentInventory/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 150)
+layout_mode = 2
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+columns = 4
+
+[node name="WeaponSlot" parent="Main/HBoxContainer/EquipmentInventory/MarginContainer/VBoxContainer/SlotsContainer" instance=ExtResource("7_3uax6")]
+layout_mode = 2
+slot = SubResource("Resource_8nruf")
+components = Array[Resource("res://addons/enhanced_inventory/scripts/ctrl/slot/ctrl_slot_component.gd")]([])
+
+[node name="DragControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("6_82dgk")
+drag = SubResource("Resource_hk6b2")
+
+[node name="SlotControl" type="Control" parent="DragControl"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("10_qf7th")
+
+[node name="StackControl" parent="DragControl/SlotControl" instance=ExtResource("10_clmpc")]
+mouse_filter = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(575, 324)

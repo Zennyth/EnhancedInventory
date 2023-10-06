@@ -8,6 +8,9 @@ class_name DragControl
 @onready var ctrl_slot: SlotControl = $SlotControl
 
 func _init() -> void:
+	for inventory_control in EnhancedInventoryEventBus.inventory_controls:
+		_on_ctrl_inventory_initialized(inventory_control)
+
 	EnhancedInventoryEventBus.ctrl_inventory_initialized.connect(_on_ctrl_inventory_initialized)
 
 func _ready() -> void:
@@ -15,12 +18,19 @@ func _ready() -> void:
 		return push_error("%s drag property cannot be null !" % name)
 
 	ctrl_slot.slot = drag.drag_slot
+	drag.item_hold_changed.connect(_on_item_hold_changed)
 
 func _process(_delta: float) -> void:
 	set_position(get_global_mouse_position() + mouse_offset)
 
 
+
+###
+# ControlSlots
+###
 func _on_ctrl_inventory_initialized(ctrl_inventory: InventoryControl) -> void:
+	ctrl_inventory.bounded_ctrl_slot.connect(bind_initialized_ctrl_slot)
+
 	for initialized_ctrl_slot in ctrl_inventory.ctrl_slots:
 		bind_initialized_ctrl_slot(initialized_ctrl_slot)
 
@@ -38,3 +48,7 @@ func _on_ctrl_slot_gui_input(event: InputEvent, interactible_ctrl_slot: SlotCont
 	elif event.button_index == MOUSE_BUTTON_RIGHT:
 		drag.handle_split_stacks(target_slot)
 
+func _on_item_hold_changed(item: Item) -> void:
+	for inventory_control in EnhancedInventoryEventBus.inventory_controls:
+		for slot_control in inventory_control.ctrl_slots:
+			slot_control.update_interaction(item)

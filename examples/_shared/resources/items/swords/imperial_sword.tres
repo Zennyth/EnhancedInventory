@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://7ol6rmjfx6h2"]
+
+[ext_resource type="Script" path="res://examples/_shared/scripts/equipment_item_component.gd" id="1_46drn"]
+[ext_resource type="Texture2D" uid="uid://bws0shiqhrwcn" path="res://examples/_shared/assets/Krise Icon pack/sword_01c.png" id="1_xtgjj"]
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/item/item.gd" id="2_t1ppf"]
+
+[sub_resource type="Resource" id="Resource_3y6p1"]
+script = ExtResource("1_46drn")
+equipment_type = 4
+
+[resource]
+script = ExtResource("2_t1ppf")
+id = "d5791c7c-c954-481e-9d4c-2163fb4ead7d"
+name = "Imperial Sword"
+icon = ExtResource("1_xtgjj")
+description = "This robust blade is the embodiment of an empire's might and discipline. Forged from the finest steel found in the imperial mines, its matte finish hides a lethal sharpness. The hilt is wrapped in dark leather, and the guard is shaped like the spread wings of the empire's emblematic eagle. Every knight inducted into the imperial service is entrusted with one, not just as a weapon, but as a symbol of their unwavering allegiance. The weight of the sword, both literal and symbolic, serves as a daily reminder to the knight of their oath to protect and serve. As the sword cuts through foes, it carries with it the authority and order of the empire."
+is_collectable = true
+is_stackable = false
+max_stack_size = 1
+components = Array[Resource("res://addons/enhanced_inventory/scripts/core/item/item_component.gd")]([SubResource("Resource_3y6p1")])

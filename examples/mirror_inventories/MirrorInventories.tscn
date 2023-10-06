@@ -1,0 +1,149 @@
+[gd_scene load_steps=17 format=3 uid="uid://cp244egylf5rk"]
+
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/ctrl/inventory/ctrl_inventory.gd" id="1_7lfgv"]
+[ext_resource type="Resource" uid="uid://dogr4i4htbm6m" path="res://examples/_shared/resources/inventories/inventory.tres" id="2_faysm"]
+[ext_resource type="PackedScene" uid="uid://d32auq1seu5e0" path="res://examples/_shared/scenes/SlotControl.tscn" id="3_g5eyf"]
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/ctrl/inventory/components/slot_instantiator.gd" id="4_raq0f"]
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/ctrl/ctrl_drag.gd" id="5_6soe5"]
+[ext_resource type="Texture2D" uid="uid://d2dbl83h5dtpu" path="res://examples/_shared/assets/mounirtohami - GUI/GUI.png" id="5_6tqry"]
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/slot/slot.gd" id="6_ihrfa"]
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/drag.gd" id="7_jr6pr"]
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/ctrl/slot/ctrl_slot.gd" id="9_2vrv0"]
+[ext_resource type="PackedScene" uid="uid://chil8hgaxjdp8" path="res://examples/_shared/scenes/StackControl.tscn" id="9_v23om"]
+
+[sub_resource type="Resource" id="Resource_o3e22"]
+script = ExtResource("4_raq0f")
+packed_slot = ExtResource("3_g5eyf")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qpnty"]
+atlas = ExtResource("5_6tqry")
+region = Rect2(0, 96, 48, 32)
+
+[sub_resource type="LabelSettings" id="LabelSettings_m181y"]
+font_size = 21
+
+[sub_resource type="Resource" id="Resource_ltrew"]
+script = ExtResource("4_raq0f")
+packed_slot = ExtResource("3_g5eyf")
+
+[sub_resource type="Resource" id="Resource_e6uvq"]
+script = ExtResource("6_ihrfa")
+components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
+
+[sub_resource type="Resource" id="Resource_hk6b2"]
+script = ExtResource("7_jr6pr")
+drag_slot = SubResource("Resource_e6uvq")
+
+[node name="MirrorInventories" type="CanvasLayer"]
+
+[node name="Main" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Main"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Inventory" type="MarginContainer" parent="Main/HBoxContainer" node_paths=PackedStringArray("container")]
+layout_mode = 2
+script = ExtResource("1_7lfgv")
+container = NodePath("MarginContainer/VBoxContainer/SlotsContainer")
+inventory = ExtResource("2_faysm")
+components = Array[Resource("res://addons/enhanced_inventory/scripts/ctrl/inventory/ctrl_inventory_component.gd")]([SubResource("Resource_o3e22")])
+
+[node name="Background" type="NinePatchRect" parent="Main/HBoxContainer/Inventory"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_qpnty")
+region_rect = Rect2(0, 0, 48, 32)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="Main/HBoxContainer/Inventory"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main/HBoxContainer/Inventory/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Main/HBoxContainer/Inventory/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Inventory"
+label_settings = SubResource("LabelSettings_m181y")
+horizontal_alignment = 1
+
+[node name="SlotsContainer" type="GridContainer" parent="Main/HBoxContainer/Inventory/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 150)
+layout_mode = 2
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+columns = 4
+
+[node name="MirrorInventory" type="MarginContainer" parent="Main/HBoxContainer" node_paths=PackedStringArray("container")]
+layout_mode = 2
+script = ExtResource("1_7lfgv")
+container = NodePath("MarginContainer/VBoxContainer/SlotsContainer")
+inventory = ExtResource("2_faysm")
+components = Array[Resource("res://addons/enhanced_inventory/scripts/ctrl/inventory/ctrl_inventory_component.gd")]([SubResource("Resource_ltrew")])
+
+[node name="Background" type="NinePatchRect" parent="Main/HBoxContainer/MirrorInventory"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_qpnty")
+region_rect = Rect2(0, 0, 48, 32)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="Main/HBoxContainer/MirrorInventory"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main/HBoxContainer/MirrorInventory/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Main/HBoxContainer/MirrorInventory/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Mirror Inventory"
+label_settings = SubResource("LabelSettings_m181y")
+horizontal_alignment = 1
+
+[node name="SlotsContainer" type="GridContainer" parent="Main/HBoxContainer/MirrorInventory/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 150)
+layout_mode = 2
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+columns = 4
+
+[node name="DragControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("5_6soe5")
+drag = SubResource("Resource_hk6b2")
+
+[node name="SlotControl" type="Control" parent="DragControl"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("9_2vrv0")
+
+[node name="StackControl" parent="DragControl/SlotControl" instance=ExtResource("9_v23om")]
+mouse_filter = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(575, 324)

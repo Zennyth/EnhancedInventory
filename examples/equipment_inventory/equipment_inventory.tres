@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="ArrayInventory" load_steps=8 format=3 uid="uid://c2jwe0youwqsa"]
+
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/inventory/components/auto_saver.gd" id="2_hs2eh"]
+[ext_resource type="Script" path="res://examples/_shared/scripts/equipment_lock_slot.gd" id="3_6u7tx"]
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/inventory/inventories/array_inventory.gd" id="3_fbuqs"]
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/slot/slot.gd" id="4_hvvmo"]
+
+[sub_resource type="Resource" id="Resource_3gmvv"]
+script = ExtResource("2_hs2eh")
+path = ""
+is_enabled = true
+
+[sub_resource type="Resource" id="Resource_i6u1w"]
+script = ExtResource("3_6u7tx")
+equipment_type = 4
+
+[sub_resource type="Resource" id="Resource_8nruf"]
+script = ExtResource("4_hvvmo")
+components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([SubResource("Resource_i6u1w")])
+
+[resource]
+script = ExtResource("3_fbuqs")
+slots = Array[ExtResource("4_hvvmo")]([SubResource("Resource_8nruf")])
+components = Array[Resource("res://addons/enhanced_inventory/scripts/core/inventory/inventory_component.gd")]([SubResource("Resource_3gmvv")])

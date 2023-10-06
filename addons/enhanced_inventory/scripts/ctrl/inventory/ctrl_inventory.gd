@@ -3,6 +3,10 @@
 extends Control
 class_name InventoryControl
 
+signal bounded_ctrl_slot(ctrl_slot: SlotControl)
+
+
+@export var container: Control
 
 @export var inventory: Inventory:
 	set = set_inventory
@@ -12,14 +16,6 @@ func set_inventory(value) -> void:
 	bind_slots_to_ctrl_slots()
 
 
-@export var components: Array[InventoryControlComponent] = []
-
-func initialize_inventory_control_components() -> void:
-	if !is_initializable:
-		return
-
-	for component in components:
-		component.initialize_inventory_control_component(self)
 
 
 ## Still an experimental feature, use it at your own risks
@@ -34,7 +30,7 @@ var is_initializable: bool:
 func fetch_ctrl_slots() -> Array[SlotControl]:
 	var slots: Array[SlotControl] = []
 
-	for slot in NodeUtils.find_nodes(self, SlotControl):
+	for slot in NodeUtils.find_nodes(container, SlotControl):
 		slots.append(slot as SlotControl)
 
 	return slots
@@ -44,20 +40,30 @@ func set_ctrl_slots(value) -> void:
 	bind_slots_to_ctrl_slots()
 
 func add_ctrl_slot(slot: Slot, ctrl_slot: SlotControl) -> void:
-	add_child(ctrl_slot)
+	if container == null:
+		return
+	
+	if !container.is_node_ready():
+		await container.ready
+
+	container.add_child(ctrl_slot)
 	ctrl_slots.append(ctrl_slot)
 	bind_slot_to_ctrl_slot(slot, ctrl_slot)
+	bounded_ctrl_slot.emit(ctrl_slot)
 
 func _ready() -> void:
+	if container == null:
+		container = self
+
 	bind_slots_to_ctrl_slots()
-	EnhancedInventoryEventBus.ctrl_inventory_initialized.emit(self)
+	EnhancedInventoryEventBus.initialize_inventory_control(self)
 
 
 
 func bind_slots_to_ctrl_slots() -> void:
-	if inventory == null or ctrl_slots == null or ctrl_slots.is_empty():
+	if inventory == null:
 		return
-	
+		
 	if !is_initializable:
 		return
 	
@@ -77,3 +83,17 @@ func bind_slot_to_ctrl_slot(slot: Slot, ctrl_slot: SlotControl) -> void:
 		return
 	
 	ctrl_slot.slot = slot
+
+
+
+###
+# COMPONENTS
+###
+@export var components: Array[InventoryControlComponent] = []
+
+func initialize_inventory_control_components() -> void:
+	if !is_initializable:
+		return
+
+	for component in components:
+		component.initialize_inventory_control_component(self)

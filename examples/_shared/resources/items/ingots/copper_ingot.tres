@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://dvp20ifdsiln"]
+
+[ext_resource type="Texture2D" uid="uid://dqovdaous0fi1" path="res://examples/_shared/assets/Krise Icon pack/ingot_01b.png" id="1_2kiuk"]
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/item/item.gd" id="1_gcw2d"]
+
+[resource]
+script = ExtResource("1_gcw2d")
+id = "e345ea65-7186-43c7-87c6-f5f4a2b204d7"
+name = "Copper Ingot"
+icon = ExtResource("1_2kiuk")
+description = "A dense block of pure copper, with a characteristic reddish-brown hue that gleams faintly when caught by the light. This ingot is the result of smelting raw copper ore, extracted from the heart of the mountains."
+is_collectable = true
+is_stackable = true
+max_stack_size = 1
+components = Array[Resource("res://addons/enhanced_inventory/scripts/core/item/item_component.gd")]([])

@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbrqw7ar6xarl"]
+
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/ctrl/ctrl_item.gd" id="1_ra7b0"]
+
+[node name="ItemControl" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 1
+script = ExtResource("1_ra7b0")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 48.0
+offset_bottom = 48.0

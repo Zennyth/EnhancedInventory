@@ -51,15 +51,14 @@ func accepts_slot(slot: Slot) -> bool:
 # STACK OPERATORS
 ###
 func pickup_stack(target: Stack) -> bool:
-	if !is_empty() or target.is_empty() or !accepts_item(target.get_item()):
+	if !is_empty() or target == null or target.is_empty() or !accepts_item(target.get_item()):
 		return false
 	
-	stack = target.stack
-	target.stack = null
+	stack = target
 	return true
 
 func unload_stack(target: Stack) -> int:
-	if target.is_empty() or !accepts_item(target.get_item()):
+	if target == null or target.is_empty() or !accepts_item(target.get_item()):
 		return -1
 	
 	if !is_empty():
@@ -68,11 +67,11 @@ func unload_stack(target: Stack) -> int:
 		
 		return stack.fill_to(target.quantity)
 	
-	stack = stack
+	stack = target
 	return 0
 
 func swap_stack(target: Slot) -> bool:
-	if !target.accepts_slot(self) or !accepts_slot(target):
+	if target.accepts_slot(self) or accepts_slot(target):
 		return false
 
 	var temp: Stack = stack
@@ -103,10 +102,20 @@ func split_stack(target: Slot) -> bool:
 # SLOT OPERATORS
 ###
 func pickup_slot(target: Slot) -> bool:
-	return pickup_stack(target.stack)
+	var res: bool = pickup_stack(target.stack)
+
+	if res:
+		target.stack = null
+
+	return res
 
 func unload_slot(target: Slot) -> int:
-	return unload_stack(target.stack)
+	var res: int = unload_stack(target.stack)
+
+	if res == 0:
+		target.stack = null
+	
+	return res
 
 ###
 # COMPONENTS
@@ -117,6 +126,9 @@ func unload_slot(target: Slot) -> int:
 func set_components(value) -> void:
 	components = value
 	for component in components:
+		if component == null:
+			continue
+
 		component.initialize_slot_component(self)
 
 func has_component(component_class) -> bool:

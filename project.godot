@@ -12,6 +12,7 @@ config_version=5
 
 config/name="Enhanced Inventory"
 config/tags=PackedStringArray("addon")
+run/main_scene="res://examples/equipment_inventory/EquipmentInventory.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.png"
 
@@ -22,4 +23,12 @@ ClassUtils="*res://addons/enhanced_common/scripts/utils/class_utils.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/enhanced_common/plugin.cfg", "res://addons/enhanced_inventory/plugin.cfg")
+enabled=PackedStringArray("res://addons/enhanced_common/plugin.cfg", "res://addons/enhanced_inventory/plugin.cfg", "res://addons/simple_resource_icons/plugin.cfg")
+
+[gui]
+
+theme/custom="res://examples/_shared/resources/default.tres"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

@@ -12,7 +12,7 @@ var computed_path: String:
 
 
 func _enable() -> void:
-	inventory.updated.connect(_on_inventory_updated)
+	SignalUtils.connect_if_not_connected(inventory.updated, _on_inventory_updated)
 
 func _disable() -> void:
 	inventory.updated.disconnect(_on_inventory_updated)

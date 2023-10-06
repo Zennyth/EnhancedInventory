@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://dc5u7ajy8beqe"]
+
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/item/item.gd" id="1_56xr8"]
+[ext_resource type="Texture2D" uid="uid://dtyx7isxem2l2" path="res://examples/_shared/assets/Krise Icon pack/ingot_01d.png" id="1_q4hce"]
+
+[resource]
+script = ExtResource("1_56xr8")
+id = "3092742c-1566-4a3b-ab93-c651faf8c7eb"
+name = "Gold Ingot"
+icon = ExtResource("1_q4hce")
+description = "A gleaming bar of pure gold, heavy in hand and unmistakable in its rich, warm hue. Prized for its rarity and luster, it's the dream of artisans and a symbol of wealth."
+is_collectable = true
+is_stackable = true
+max_stack_size = 64
+components = Array[Resource("res://addons/enhanced_inventory/scripts/core/item/item_component.gd")]([])

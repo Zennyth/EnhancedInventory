@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://qbnejr8g0m43"]
+
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/ctrl/slot/ctrl_slot.gd" id="1_fkxja"]
+[ext_resource type="Texture2D" uid="uid://d2dbl83h5dtpu" path="res://examples/_shared/assets/mounirtohami - GUI/GUI.png" id="2_eym8i"]
+[ext_resource type="PackedScene" uid="uid://chil8hgaxjdp8" path="res://examples/_shared/scenes/StackControl.tscn" id="3_wn5fa"]
+
+[node name="SlotControl" type="Control"]
+custom_minimum_size = Vector2(58, 58)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 58.0
+offset_bottom = 58.0
+script = ExtResource("1_fkxja")
+components = null
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_eym8i")
+region_rect = Rect2(48.9418, 96.8633, 30.0582, 30.4631)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="StackControl" parent="MarginContainer" instance=ExtResource("3_wn5fa")]
+layout_mode = 2

@@ -9,10 +9,20 @@
 	"$schema": "https://chickensoft.games/schemas/addons.schema.json",
 	"cache": "../.addons",
 	"addons": {
-	  "enhanced_common": {
-		"url": "https://github.com/Zennyth/EnhancedCommon",
-		"checkout": "develop",
-		"subfolder": "addons/enhanced_common"
-	  }
+		"enhanced_common": {
+			"url": "https://github.com/Zennyth/EnhancedCommon",
+			"checkout": "develop",
+			"subfolder": "addons/enhanced_common"
+		},
+		"enhanced_resource": {
+			"url": "https://github.com/Zennyth/EnhancedResource",
+			"checkout": "develop",
+			"subfolder": "addons/enhanced_resource"
+		},
+		// "simple_resource_icons": {
+		// 	"url": "https://github.com/mrpedrobraga/godot-simple-resource-icons",
+		// 	"checkout": "main",
+		// 	"subfolder": "addons/simple_resource_icons"
+		// }
 	}
-  }
+}

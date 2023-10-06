@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b8eulyrng3bjv"]
+
+[ext_resource type="FontFile" uid="uid://1h75h0guh3ui" path="res://examples/_shared/assets/mounirtohami - GUI/MinimalPixel v2.ttf" id="1_ky5yr"]
+
+[resource]
+default_font = ExtResource("1_ky5yr")

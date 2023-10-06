@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://c8t3xobxrddji"]
+
+[ext_resource type="Texture2D" uid="uid://dalaurl0hfn61" path="res://examples/_shared/assets/Krise Icon pack/sword_01a.png" id="1_fsseu"]
+[ext_resource type="Script" path="res://examples/_shared/scripts/equipment_item_component.gd" id="1_ipwks"]
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/item/item.gd" id="2_00g45"]
+
+[sub_resource type="Resource" id="Resource_eosx3"]
+script = ExtResource("1_ipwks")
+equipment_type = 4
+
+[resource]
+script = ExtResource("2_00g45")
+id = "fbd67fe8-bf1e-404d-b93c-9a9447c3bd57"
+name = "Wooden Sword"
+icon = ExtResource("1_fsseu")
+description = "A rudimentary blade carved from aged timber. While it might not be the sharpest weapon in the armory, it has helped many novice adventurers start their journey."
+is_collectable = true
+is_stackable = false
+max_stack_size = 1
+components = Array[Resource("res://addons/enhanced_inventory/scripts/core/item/item_component.gd")]([SubResource("Resource_eosx3")])

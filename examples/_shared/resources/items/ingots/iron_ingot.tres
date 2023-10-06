@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://chv7eflkjkmcf"]
+
+[ext_resource type="Texture2D" uid="uid://bvglxn6gp7rnq" path="res://examples/_shared/assets/Krise Icon pack/ingot_01c.png" id="1_tlw7o"]
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/item/item.gd" id="2_unstl"]
+
+[resource]
+script = ExtResource("2_unstl")
+id = "d9d20b80-3d1e-476e-a24e-94b2a10cabfb"
+name = "Iron Ingot"
+icon = ExtResource("1_tlw7o")
+description = "A solid bar of cold, gray iron. Sturdy and versatile, it's the backbone of many crafts, embodying strength and resilience."
+is_collectable = true
+is_stackable = true
+max_stack_size = 64
+components = Array[Resource("res://addons/enhanced_inventory/scripts/core/item/item_component.gd")]([])

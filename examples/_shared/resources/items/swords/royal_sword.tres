@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://22st6xyjj8h7"]
+
+[ext_resource type="Texture2D" uid="uid://cygox5se55mey" path="res://examples/_shared/assets/Krise Icon pack/sword_01b.png" id="1_627n4"]
+[ext_resource type="Script" path="res://examples/_shared/scripts/equipment_item_component.gd" id="1_p0aph"]
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/item/item.gd" id="2_alqc4"]
+
+[sub_resource type="Resource" id="Resource_fw3jm"]
+script = ExtResource("1_p0aph")
+equipment_type = 4
+
+[resource]
+script = ExtResource("2_alqc4")
+id = "ef1ef288-b3c5-4dc8-92f4-d128d6fd487b"
+name = "Royal Sword"
+icon = ExtResource("1_627n4")
+description = "A majestic blade, glistening with gold and inlaid with precious gemstones. This sword was not forged merely for battle; it represents the legacy of a kingdom's rulership. Only the true heir or a chosen champion is deemed worthy to wield its power."
+is_collectable = true
+is_stackable = false
+max_stack_size = 1
+components = Array[Resource("res://addons/enhanced_inventory/scripts/core/item/item_component.gd")]([SubResource("Resource_fw3jm")])

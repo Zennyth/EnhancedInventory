@@ -18,13 +18,13 @@ func initialize_owner(_owner: Node) -> void:
 	owner = _owner
 	initialized_owner.emit()
 
-
 func initialize_slots() -> void:
 	for slot in get_slots():
 		if slot == null:
 			continue
 
 		bind_slot(slot)
+
 
 
 func get_slot(_index: int) -> Slot:
@@ -128,7 +128,8 @@ func pick_up_stack(stack: Stack) -> Stack:
 ###
 # COMPONENTS
 ###
-@export var components: Array[InventoryComponent] = []
+@export var components: Array[InventoryComponent] = []:
+	set = set_components
 
 func set_components(value) -> void:
 	components = value
@@ -140,3 +141,29 @@ func initialize_inventory_components() -> void:
 			continue
 
 		component.initialize_inventory_component(self)
+
+
+###
+# SLOT COMPONENTS
+###
+var run_time_slot_components: Array[SlotComponent]
+
+var slot_components: Array[SlotComponent] = []:
+	set = set_slot_components
+
+func set_slot_components(value) -> void:
+	slot_components = value
+	initialize_slot_components()
+
+func initialize_slot_components() -> void:
+	pass
+	# run_time_slot_components = []
+
+	# for slot in get_slots():
+	# 	for component in slot_components:
+	# 		if component == null:
+	# 			continue
+			
+	# 		var duplicated_component = component.duplicate(true)
+	# 		duplicated_component.initialize_slot_component(slot)
+	# 		run_time_slot_components.append(duplicated_component)
