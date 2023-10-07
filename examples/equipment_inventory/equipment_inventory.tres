@@ -1,24 +1,90 @@
-[gd_resource type="Resource" script_class="ArrayInventory" load_steps=8 format=3 uid="uid://c2jwe0youwqsa"]
+[gd_resource type="Resource" script_class="ArrayInventory" load_steps=27 format=3 uid="uid://b08lf2ntn8815"]
 
 [ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/inventory/components/auto_saver.gd" id="2_hs2eh"]
 [ext_resource type="Script" path="res://examples/_shared/scripts/equipment_lock_slot.gd" id="3_6u7tx"]
 [ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/inventory/inventories/array_inventory.gd" id="3_fbuqs"]
 [ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/slot/slot.gd" id="4_hvvmo"]
+[ext_resource type="Texture2D" uid="uid://bg4ydc8wuj2su" path="res://examples/_shared/assets/Krise Icon pack/sword_03c.png" id="4_k7vei"]
+[ext_resource type="Texture2D" uid="uid://cq3xqbnne82dg" path="res://examples/_shared/assets/Krise Icon pack/armor_01b.png" id="6_ft11c"]
+[ext_resource type="Texture2D" uid="uid://cu6pkqbdvvxwj" path="res://examples/_shared/assets/Krise Icon pack/helmet_02b.png" id="6_wo2jp"]
+[ext_resource type="Texture2D" uid="uid://b8t52wjaey753" path="res://examples/_shared/assets/Krise Icon pack/gloves_01b.png" id="7_gyu4u"]
+[ext_resource type="Resource" uid="uid://c8t3xobxrddji" path="res://examples/_shared/resources/items/swords/wooden_sword.tres" id="7_r4a53"]
+[ext_resource type="Texture2D" uid="uid://b8gjueptcoj7t" path="res://examples/_shared/assets/Krise Icon pack/boots_01b.png" id="8_j70rw"]
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/stack.gd" id="8_t52v3"]
+[ext_resource type="Texture2D" uid="uid://caj8js37ieayk" path="res://examples/_shared/assets/Krise Icon pack/shield_01b.png" id="12_juiwm"]
 
 [sub_resource type="Resource" id="Resource_3gmvv"]
 script = ExtResource("2_hs2eh")
 path = ""
 is_enabled = true
 
-[sub_resource type="Resource" id="Resource_i6u1w"]
+[sub_resource type="Resource" id="Resource_eexy3"]
+script = ExtResource("3_6u7tx")
+equipment_type = 0
+
+[sub_resource type="Resource" id="Resource_k7xov"]
+script = ExtResource("4_hvvmo")
+components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([SubResource("Resource_eexy3")])
+name = "Head"
+icon = ExtResource("6_wo2jp")
+
+[sub_resource type="Resource" id="Resource_k6hd6"]
+script = ExtResource("3_6u7tx")
+equipment_type = 1
+
+[sub_resource type="Resource" id="Resource_verwu"]
+script = ExtResource("4_hvvmo")
+components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([SubResource("Resource_k6hd6")])
+name = "Body"
+icon = ExtResource("6_ft11c")
+
+[sub_resource type="Resource" id="Resource_5vfdx"]
+script = ExtResource("3_6u7tx")
+equipment_type = 2
+
+[sub_resource type="Resource" id="Resource_7ysie"]
+script = ExtResource("4_hvvmo")
+components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([SubResource("Resource_5vfdx")])
+name = "Hands"
+icon = ExtResource("7_gyu4u")
+
+[sub_resource type="Resource" id="Resource_fw3c1"]
+script = ExtResource("3_6u7tx")
+equipment_type = 3
+
+[sub_resource type="Resource" id="Resource_bwq31"]
+script = ExtResource("4_hvvmo")
+components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([SubResource("Resource_fw3c1")])
+name = "Feet"
+icon = ExtResource("8_j70rw")
+
+[sub_resource type="Resource" id="Resource_1aaqx"]
 script = ExtResource("3_6u7tx")
 equipment_type = 4
 
+[sub_resource type="Resource" id="Resource_0g4nb"]
+script = ExtResource("8_t52v3")
+item = ExtResource("7_r4a53")
+quantity = 1
+
 [sub_resource type="Resource" id="Resource_8nruf"]
 script = ExtResource("4_hvvmo")
-components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([SubResource("Resource_i6u1w")])
+stack = SubResource("Resource_0g4nb")
+components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([SubResource("Resource_1aaqx")])
+name = "Weapon"
+icon = ExtResource("4_k7vei")
+
+[sub_resource type="Resource" id="Resource_6hoor"]
+script = ExtResource("3_6u7tx")
+equipment_type = 5
+
+[sub_resource type="Resource" id="Resource_ojpv3"]
+script = ExtResource("4_hvvmo")
+components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([SubResource("Resource_6hoor")])
+name = "Shield"
+icon = ExtResource("12_juiwm")
 
 [resource]
 script = ExtResource("3_fbuqs")
-slots = Array[ExtResource("4_hvvmo")]([SubResource("Resource_8nruf")])
+slots = Array[ExtResource("4_hvvmo")]([SubResource("Resource_k7xov"), SubResource("Resource_verwu"), SubResource("Resource_7ysie"), SubResource("Resource_bwq31"), SubResource("Resource_8nruf"), SubResource("Resource_ojpv3")])
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/inventory/inventory_component.gd")]([SubResource("Resource_3gmvv")])

@@ -6,10 +6,14 @@ class_name SlotControl
 signal selected
 signal unselected
 signal clicked
+signal updated
 
 @onready var ctrl_stack: StackControl = NodeUtils.find_node(self, StackControl) as StackControl
 
-@export var slot: Slot:
+
+@export var slot_index: int = -1
+
+var slot: Slot:
 	set = set_slot
 
 func set_slot(value) -> void:
@@ -32,6 +36,7 @@ func unbind_slot() -> void:
 
 func _on_slot_updated() -> void:
 	ctrl_stack.stack = slot.stack if slot != null else null
+	updated.emit()
 
 
 func _ready() -> void:
@@ -64,7 +69,15 @@ func get_is_interactable(item: Item) -> bool:
 # COMPONENTS
 ###
 @export var components: Array[SlotControlComponent] = []
+var _components: Array[SlotControlComponent]
 
 func initialize_slot_control_components() -> void:
+	_components = []
+
 	for component in components:
-		component.initialize_slot_control_component(self)
+		initialize_slot_control_component(component)
+
+func initialize_slot_control_component(component: SlotControlComponent) -> void:
+	var _component = component.duplicate(true)
+	_component.initialize_slot_control_component(self)
+	_components.append(_component)

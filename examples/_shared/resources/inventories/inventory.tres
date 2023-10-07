@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ArrayInventory" load_steps=32 format=3 uid="uid://dogr4i4htbm6m"]
+[gd_resource type="Resource" script_class="ArrayInventory" load_steps=30 format=3 uid="uid://dogr4i4htbm6m"]
 
 [ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/inventory/inventories/array_inventory.gd" id="1_3a1wv"]
 [ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/inventory/components/infinite_capacity.gd" id="1_icnvi"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/slot/slot.gd" id="4_04yav"]
 [ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/stack.gd" id="5_jex1t"]
 [ext_resource type="Resource" uid="uid://chv7eflkjkmcf" path="res://examples/_shared/resources/items/ingots/iron_ingot.tres" id="5_obxw0"]
-[ext_resource type="Resource" uid="uid://c8t3xobxrddji" path="res://examples/_shared/resources/items/swords/wooden_sword.tres" id="7_pqjqb"]
 
 [sub_resource type="Resource" id="Resource_pjbgn"]
 script = ExtResource("1_icnvi")
@@ -28,91 +27,104 @@ quantity = 64
 script = ExtResource("4_04yav")
 stack = SubResource("Resource_sqxca")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
-
-[sub_resource type="Resource" id="Resource_0g4nb"]
-script = ExtResource("5_jex1t")
-item = ExtResource("7_pqjqb")
-quantity = 1
+name = ""
 
 [sub_resource type="Resource" id="Resource_x3r3t"]
 script = ExtResource("4_04yav")
-stack = SubResource("Resource_0g4nb")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
+name = ""
 
 [sub_resource type="Resource" id="Resource_idu5b"]
 script = ExtResource("4_04yav")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
+name = ""
 
 [sub_resource type="Resource" id="Resource_0jdkd"]
 script = ExtResource("4_04yav")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
+name = ""
 
 [sub_resource type="Resource" id="Resource_wfsmx"]
 script = ExtResource("4_04yav")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
+name = ""
 
 [sub_resource type="Resource" id="Resource_ybk28"]
 script = ExtResource("4_04yav")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
+name = ""
 
 [sub_resource type="Resource" id="Resource_d7l8r"]
 script = ExtResource("4_04yav")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
+name = ""
 
 [sub_resource type="Resource" id="Resource_8l165"]
 script = ExtResource("4_04yav")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
+name = ""
 
 [sub_resource type="Resource" id="Resource_6ptb5"]
 script = ExtResource("4_04yav")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
+name = ""
 
 [sub_resource type="Resource" id="Resource_lnthp"]
 script = ExtResource("4_04yav")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
+name = ""
 
 [sub_resource type="Resource" id="Resource_jmnk0"]
 script = ExtResource("4_04yav")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
+name = ""
 
 [sub_resource type="Resource" id="Resource_2f5js"]
 script = ExtResource("4_04yav")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
+name = ""
 
 [sub_resource type="Resource" id="Resource_t8aad"]
 script = ExtResource("4_04yav")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
+name = ""
 
 [sub_resource type="Resource" id="Resource_ao6hh"]
 script = ExtResource("4_04yav")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
+name = ""
 
 [sub_resource type="Resource" id="Resource_xo7r4"]
 script = ExtResource("4_04yav")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
+name = ""
 
 [sub_resource type="Resource" id="Resource_lag56"]
 script = ExtResource("4_04yav")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
+name = ""
 
 [sub_resource type="Resource" id="Resource_ng8io"]
 script = ExtResource("4_04yav")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
+name = ""
 
 [sub_resource type="Resource" id="Resource_fp4nx"]
 script = ExtResource("4_04yav")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
+name = ""
 
 [sub_resource type="Resource" id="Resource_qg1i3"]
 script = ExtResource("4_04yav")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
+name = ""
 
 [sub_resource type="Resource" id="Resource_hha35"]
 script = ExtResource("4_04yav")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
+name = ""
 
 [resource]
 script = ExtResource("1_3a1wv")
 slots = Array[ExtResource("4_04yav")]([SubResource("Resource_4j61g"), SubResource("Resource_x3r3t"), SubResource("Resource_idu5b"), SubResource("Resource_0jdkd"), SubResource("Resource_wfsmx"), SubResource("Resource_ybk28"), SubResource("Resource_d7l8r"), SubResource("Resource_8l165"), SubResource("Resource_6ptb5"), SubResource("Resource_lnthp"), SubResource("Resource_jmnk0"), SubResource("Resource_2f5js"), SubResource("Resource_t8aad"), SubResource("Resource_ao6hh"), SubResource("Resource_xo7r4"), SubResource("Resource_lag56"), SubResource("Resource_ng8io"), SubResource("Resource_fp4nx"), SubResource("Resource_qg1i3"), SubResource("Resource_hha35")])
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/inventory/inventory_component.gd")]([SubResource("Resource_pjbgn"), SubResource("Resource_3gmvv")])
-slot_components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])

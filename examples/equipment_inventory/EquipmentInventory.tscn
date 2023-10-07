@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://chvbqh7700a73"]
+[gd_scene load_steps=20 format=3 uid="uid://chvbqh7700a73"]
 
 [ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/ctrl/inventory/ctrl_inventory.gd" id="1_2dgik"]
 [ext_resource type="Resource" uid="uid://dogr4i4htbm6m" path="res://examples/_shared/resources/inventories/inventory.tres" id="2_p7w4e"]
@@ -6,10 +6,10 @@
 [ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/ctrl/inventory/components/slot_instantiator.gd" id="4_wlpm8"]
 [ext_resource type="Texture2D" uid="uid://d2dbl83h5dtpu" path="res://examples/_shared/assets/mounirtohami - GUI/GUI.png" id="5_2wwo4"]
 [ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/ctrl/ctrl_drag.gd" id="6_82dgk"]
-[ext_resource type="Resource" uid="uid://c2jwe0youwqsa" path="res://examples/equipment_inventory/equipment_inventory.tres" id="6_lw3mk"]
+[ext_resource type="Resource" uid="uid://b08lf2ntn8815" path="res://examples/equipment_inventory/equipment_inventory.tres" id="6_lw3mk"]
+[ext_resource type="Script" path="res://examples/_shared/scripts/equipment_ctrl_slot_component.gd" id="7_00p3a"]
 [ext_resource type="PackedScene" uid="uid://qbnejr8g0m43" path="res://examples/equipment_inventory/slots/EquipmentSlotControl.tscn" id="7_3uax6"]
 [ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/slot/slot.gd" id="7_kx3ji"]
-[ext_resource type="Script" path="res://examples/_shared/scripts/equipment_lock_slot.gd" id="8_1b3v7"]
 [ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/drag.gd" id="8_kmhgd"]
 [ext_resource type="PackedScene" uid="uid://chil8hgaxjdp8" path="res://examples/_shared/scenes/StackControl.tscn" id="10_clmpc"]
 [ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/ctrl/slot/ctrl_slot.gd" id="10_qf7th"]
@@ -25,17 +25,13 @@ region = Rect2(0, 96, 48, 32)
 [sub_resource type="LabelSettings" id="LabelSettings_m181y"]
 font_size = 21
 
-[sub_resource type="Resource" id="Resource_i6u1w"]
-script = ExtResource("8_1b3v7")
-equipment_type = 4
-
-[sub_resource type="Resource" id="Resource_8nruf"]
-script = ExtResource("7_kx3ji")
-components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([SubResource("Resource_i6u1w")])
+[sub_resource type="Resource" id="Resource_1i16k"]
+script = ExtResource("7_00p3a")
 
 [sub_resource type="Resource" id="Resource_e6uvq"]
 script = ExtResource("7_kx3ji")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
+name = ""
 
 [sub_resource type="Resource" id="Resource_hk6b2"]
 script = ExtResource("8_kmhgd")
@@ -100,6 +96,7 @@ script = ExtResource("1_2dgik")
 container = NodePath("MarginContainer/VBoxContainer/SlotsContainer")
 inventory = ExtResource("6_lw3mk")
 sync_in_editor = true
+ctrl_slot_components = Array[Resource("res://addons/enhanced_inventory/scripts/ctrl/slot/ctrl_slot_component.gd")]([SubResource("Resource_1i16k")])
 
 [node name="Background" type="NinePatchRect" parent="Main/HBoxContainer/EquipmentInventory"]
 layout_mode = 2
@@ -122,21 +119,44 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="Main/HBoxContainer/EquipmentInventory/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "EquipmentInventory"
+text = "Equipment Inventory"
 label_settings = SubResource("LabelSettings_m181y")
 horizontal_alignment = 1
 
-[node name="SlotsContainer" type="GridContainer" parent="Main/HBoxContainer/EquipmentInventory/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(200, 150)
+[node name="SlotsContainer" type="VBoxContainer" parent="Main/HBoxContainer/EquipmentInventory/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/h_separation = 5
-theme_override_constants/v_separation = 5
-columns = 4
+size_flags_horizontal = 4
+alignment = 1
 
-[node name="WeaponSlot" parent="Main/HBoxContainer/EquipmentInventory/MarginContainer/VBoxContainer/SlotsContainer" instance=ExtResource("7_3uax6")]
+[node name="HeadSlot" parent="Main/HBoxContainer/EquipmentInventory/MarginContainer/VBoxContainer/SlotsContainer" instance=ExtResource("7_3uax6")]
 layout_mode = 2
-slot = SubResource("Resource_8nruf")
-components = Array[Resource("res://addons/enhanced_inventory/scripts/ctrl/slot/ctrl_slot_component.gd")]([])
+slot_index = 0
+
+[node name="MiddlePart" type="HBoxContainer" parent="Main/HBoxContainer/EquipmentInventory/MarginContainer/VBoxContainer/SlotsContainer"]
+layout_mode = 2
+
+[node name="HandsSlot" parent="Main/HBoxContainer/EquipmentInventory/MarginContainer/VBoxContainer/SlotsContainer/MiddlePart" instance=ExtResource("7_3uax6")]
+layout_mode = 2
+slot_index = 2
+
+[node name="BodySlot" parent="Main/HBoxContainer/EquipmentInventory/MarginContainer/VBoxContainer/SlotsContainer/MiddlePart" instance=ExtResource("7_3uax6")]
+layout_mode = 2
+slot_index = 1
+
+[node name="FeetSlot" parent="Main/HBoxContainer/EquipmentInventory/MarginContainer/VBoxContainer/SlotsContainer" instance=ExtResource("7_3uax6")]
+layout_mode = 2
+slot_index = 3
+
+[node name="Holders" type="HBoxContainer" parent="Main/HBoxContainer/EquipmentInventory/MarginContainer/VBoxContainer/SlotsContainer"]
+layout_mode = 2
+
+[node name="WeaponSlot" parent="Main/HBoxContainer/EquipmentInventory/MarginContainer/VBoxContainer/SlotsContainer/Holders" instance=ExtResource("7_3uax6")]
+layout_mode = 2
+slot_index = 4
+
+[node name="ShieldSlot" parent="Main/HBoxContainer/EquipmentInventory/MarginContainer/VBoxContainer/SlotsContainer/Holders" instance=ExtResource("7_3uax6")]
+layout_mode = 2
+slot_index = 5
 
 [node name="DragControl" type="Control" parent="."]
 layout_mode = 3
@@ -153,9 +173,14 @@ offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 script = ExtResource("10_qf7th")
+slot_index = 0
 
 [node name="StackControl" parent="DragControl/SlotControl" instance=ExtResource("10_clmpc")]
 mouse_filter = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(575, 324)
+
+[node name="OptionButton" type="OptionButton" parent="."]
+offset_right = 45.0
+offset_bottom = 20.0

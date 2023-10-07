@@ -71,7 +71,7 @@ func unload_stack(target: Stack) -> int:
 	return 0
 
 func swap_stack(target: Slot) -> bool:
-	if target.accepts_slot(self) or accepts_slot(target):
+	if not target.accepts_slot(self) or not accepts_slot(target):
 		return false
 
 	var temp: Stack = stack
@@ -122,20 +122,28 @@ func unload_slot(target: Slot) -> int:
 ###
 @export var components: Array[SlotComponent] = []:
 	set = set_components
+var _components: Array[SlotComponent]
 
 func set_components(value) -> void:
 	components = value
+	_components = []
 	for component in components:
 		if component == null:
 			continue
 
-		component.initialize_slot_component(self)
+		initialize_slot_component(component)
+
+func initialize_slot_component(component: SlotComponent) -> void:
+	var _component: SlotComponent = component.duplicate(true)
+	_component.initialize_slot_component(self)
+	_components.append(_component)
+
 
 func has_component(component_class) -> bool:
-	return components.any(func(component: SlotComponent): return is_instance_of(component, component_class))
+	return _components.any(func(component: SlotComponent): return is_instance_of(component, component_class))
 
 func get_component(component_class) -> SlotComponent:
-	for component in components:
+	for component in _components:
 		if is_instance_of(component, component_class):
 			return component
 	
@@ -163,3 +171,11 @@ func is_item_collectable() -> bool:
 
 func get_item_max_stack_size() -> int:
 	return stack.get_item_max_stack_size() if stack != null else 0
+
+
+###
+# EDITOR
+###
+@export_group("Resource")
+@export var name: String = ""
+@export var icon: Texture
