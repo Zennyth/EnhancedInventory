@@ -7,6 +7,8 @@ signal updated
 signal stack_added(stack: Stack)
 signal stack_removed(stack: Stack)
 
+var index: int = -1
+
 @export var stack: Stack:
 	set(_stack):
 		unbind_stack()

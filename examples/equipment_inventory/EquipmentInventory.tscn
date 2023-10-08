@@ -55,8 +55,8 @@ alignment = 1
 layout_mode = 2
 script = ExtResource("1_2dgik")
 container = NodePath("MarginContainer/VBoxContainer/SlotsContainer")
-inventory = ExtResource("2_p7w4e")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/ctrl/inventory/ctrl_inventory_component.gd")]([SubResource("Resource_o3e22")])
+inventory = ExtResource("2_p7w4e")
 
 [node name="Background" type="NinePatchRect" parent="Main/HBoxContainer/Inventory"]
 layout_mode = 2
@@ -94,9 +94,9 @@ columns = 4
 layout_mode = 2
 script = ExtResource("1_2dgik")
 container = NodePath("MarginContainer/VBoxContainer/SlotsContainer")
-inventory = ExtResource("6_lw3mk")
 sync_in_editor = true
 ctrl_slot_components = Array[Resource("res://addons/enhanced_inventory/scripts/ctrl/slot/ctrl_slot_component.gd")]([SubResource("Resource_1i16k")])
+inventory = ExtResource("6_lw3mk")
 
 [node name="Background" type="NinePatchRect" parent="Main/HBoxContainer/EquipmentInventory"]
 layout_mode = 2

@@ -23,6 +23,9 @@ func _disable() -> void:
 
 func _on_inventory_updated() -> void:
 	if computed_path == "" or computed_path == null:
+		if inventory.is_template:
+			return
+
 		return push_warning("Could not find a path for the inventory to be saved !")
 	
 	if inventory.resource_path != "" or inventory.resource_path != null:

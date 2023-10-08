@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/inventory/inventory_manager.gd" id="1_3hip1"]
 [ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/ctrl/inventory/ctrl_inventory.gd" id="1_5pypr"]
 [ext_resource type="Script" path="res://examples/multiplayer_inventories/multiplayer/multiplayer.gd" id="1_eecgp"]
-[ext_resource type="Resource" uid="uid://dogr4i4htbm6m" path="res://examples/_shared/resources/inventories/inventory.tres" id="2_r6ped"]
 [ext_resource type="PackedScene" uid="uid://d32auq1seu5e0" path="res://examples/_shared/scenes/SlotControl.tscn" id="3_12ueq"]
+[ext_resource type="Resource" uid="uid://b0fu4gbpl2il" path="res://examples/multiplayer_inventories/mini_inventory_template.tres" id="3_ijb10"]
 [ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/ctrl/inventory/components/slot_instantiator.gd" id="4_0am8w"]
 [ext_resource type="Texture2D" uid="uid://d2dbl83h5dtpu" path="res://examples/_shared/assets/mounirtohami - GUI/GUI.png" id="5_yld8y"]
 [ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/ctrl/ctrl_drag.gd" id="6_yjwl3"]
@@ -40,7 +40,7 @@ script = ExtResource("1_eecgp")
 
 [node name="InventoryManager" type="Node" parent="MultiplayerInventories"]
 script = ExtResource("1_3hip1")
-_inventory = ExtResource("2_r6ped")
+_inventory = ExtResource("3_ijb10")
 auto_initialize = false
 
 [node name="Main" type="CenterContainer" parent="MultiplayerInventories"]

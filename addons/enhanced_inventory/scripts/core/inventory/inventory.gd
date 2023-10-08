@@ -12,11 +12,13 @@ signal unbounded_slot(slot: Slot)
 
 
 func initialize_slots() -> void:	
-	for slot in get_slots():
+	for i in get_indexes():
+		var slot: Slot = get_slot(i)
+		
 		if slot == null:
 			continue
 
-		bind_slot(slot)
+		set_slot(i, slot)
 
 func get_slot(_index: int) -> Slot:
 	return null
@@ -31,6 +33,7 @@ func set_slot(index: int, slot: Slot) -> void:
 	if slot == null:
 		return push_warning("Can't set null slot at index: ", index)
 	
+	slot.index = index
 	bind_slot(slot)
 
 func bind_slot(slot: Slot) -> void:
@@ -119,7 +122,7 @@ func pick_up_stack(stack: Stack) -> Stack:
 var manager: InventoryManager
 var owner: Node
 
-## Define if the inventory is duplicated at runtime to easily create replicas of an inventory without modifying it at runtime
+## Define if the inventory is duplicated at runtime to easily create replicas without modifying the template
 @export var is_template: bool = true
 
 func get_instance() -> Inventory:
