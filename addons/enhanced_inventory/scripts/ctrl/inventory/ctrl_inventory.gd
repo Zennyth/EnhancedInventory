@@ -8,12 +8,20 @@ signal bounded_ctrl_slot(ctrl_slot: SlotControl)
 
 @export var container: Control
 
-@export var inventory: Inventory:
+
+###
+# INVENTORY_MANAGER
+###
+var inventory_manager: InventoryManager
+
+###
+# INVENTORY_RESOURCE
+###
+var inventory: Inventory:
 	set = set_inventory
 
 func set_inventory(value) -> void:
 	inventory = value
-	bind_slots_to_ctrl_slots()
 
 
 
@@ -21,7 +29,8 @@ func set_inventory(value) -> void:
 ## Still an experimental feature, use it at your own risks
 @export var sync_in_editor: bool = false
 var is_initializable: bool:
-	get: return !Engine.is_editor_hint() or sync_in_editor
+	get: return (!Engine.is_editor_hint() or sync_in_editor) and !is_initialized
+var is_initialized: bool = false
 
 
 @onready var ctrl_slots: Array[SlotControl] = fetch_ctrl_slots():
@@ -37,7 +46,6 @@ func fetch_ctrl_slots() -> Array[SlotControl]:
 
 func set_ctrl_slots(value) -> void:
 	ctrl_slots = value
-	bind_slots_to_ctrl_slots()
 
 func add_ctrl_slot(slot: Slot, ctrl_slot: SlotControl) -> void:
 	if container == null:
@@ -60,8 +68,24 @@ func add_ctrl_slot(slot: Slot, ctrl_slot: SlotControl) -> void:
 	bounded_ctrl_slot.emit(ctrl_slot)
 
 func _ready() -> void:
+	if !is_initializable:
+		return
+
 	if container == null:
 		container = self
+	
+	if mode == Mode.INVENTORY_MANAGER:
+		if inventory_manager == null:
+			return push_error("<InventoryControl>.inventory_manager has not been configured properly !")
+	
+		inventory = inventory_manager.inventory
+	
+	if mode == Mode.INVENTORY_RESOURCE:
+		if inventory == null:
+			return push_error("<InventoryControl>.inventory has not been configured properly !")
+
+		inventory.initialize()
+	
 
 	bind_slots_to_ctrl_slots()
 	EnhancedInventoryEventBus.initialize_inventory_control(self)
@@ -100,6 +124,8 @@ func bind_slots_to_ctrl_slots() -> void:
 	
 	initialize_ctrl_slot_components()
 
+	is_initialized = true
+
 func bind_slot_to_ctrl_slot(slot: Slot, ctrl_slot: SlotControl) -> void:
 	if slot == null or ctrl_slot == null or ctrl_slot.slot == slot:
 		return
@@ -131,3 +157,44 @@ func initialize_ctrl_slot_components() -> void:
 	for ctrl_slot in ctrl_slots:
 		for ctrl_slot_component in ctrl_slot_components:
 			ctrl_slot.initialize_slot_control_component(ctrl_slot_component)
+
+
+###
+# EDITOR
+###
+enum Mode {
+	INVENTORY_RESOURCE,
+	INVENTORY_MANAGER
+}
+
+@export var mode: Mode = Mode.INVENTORY_RESOURCE:
+	set = set_mode
+
+func set_mode(value) -> void:
+	mode = value
+	notify_property_list_changed()
+
+func _get_property_list() -> Array[Dictionary]:
+	var properties: Array[Dictionary] = []
+
+	match mode:
+		Mode.INVENTORY_RESOURCE:
+			properties.append({
+				"name": "inventory",
+				"usage": PROPERTY_USAGE_DEFAULT,
+				"type": TYPE_OBJECT,
+				"hint": PROPERTY_HINT_RESOURCE_TYPE,
+				"hint_string": "Inventory",
+				"class_name": &"Inventory",
+			})
+		Mode.INVENTORY_MANAGER:
+			properties.append({
+				"name": "inventory_manager",
+				"usage": PROPERTY_USAGE_DEFAULT,
+				"type": TYPE_OBJECT,
+				"hint": PROPERTY_HINT_NODE_TYPE,
+				"hint_string": "InventoryManager",
+				"class_name": &"InventoryManager",
+			})
+
+	return properties

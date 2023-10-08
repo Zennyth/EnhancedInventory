@@ -7,7 +7,6 @@ extends Inventory
 
 func set_slots(value) -> void:
 	slots = value
-	initialize_slots()
 
 
 

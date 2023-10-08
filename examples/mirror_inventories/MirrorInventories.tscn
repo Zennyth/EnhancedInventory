@@ -29,6 +29,7 @@ packed_slot = ExtResource("3_g5eyf")
 [sub_resource type="Resource" id="Resource_e6uvq"]
 script = ExtResource("6_ihrfa")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
+name = ""
 
 [sub_resource type="Resource" id="Resource_hk6b2"]
 script = ExtResource("7_jr6pr")
@@ -52,8 +53,8 @@ alignment = 1
 layout_mode = 2
 script = ExtResource("1_7lfgv")
 container = NodePath("MarginContainer/VBoxContainer/SlotsContainer")
-inventory = ExtResource("2_faysm")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/ctrl/inventory/ctrl_inventory_component.gd")]([SubResource("Resource_o3e22")])
+inventory = ExtResource("2_faysm")
 
 [node name="Background" type="NinePatchRect" parent="Main/HBoxContainer/Inventory"]
 layout_mode = 2
@@ -91,8 +92,8 @@ columns = 4
 layout_mode = 2
 script = ExtResource("1_7lfgv")
 container = NodePath("MarginContainer/VBoxContainer/SlotsContainer")
-inventory = ExtResource("2_faysm")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/ctrl/inventory/ctrl_inventory_component.gd")]([SubResource("Resource_ltrew")])
+inventory = ExtResource("2_faysm")
 
 [node name="Background" type="NinePatchRect" parent="Main/HBoxContainer/MirrorInventory"]
 layout_mode = 2

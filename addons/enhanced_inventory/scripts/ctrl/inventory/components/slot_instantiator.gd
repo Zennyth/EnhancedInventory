@@ -14,13 +14,18 @@ func instantiate_on_initialize() -> void:
 	
 	if slot_difference < 0:
 		return push_warning("%s has more <ControlSlot> than %s" % [ctrl_inventory, inventory])
-	
+
 	for i in range(slot_difference):
 		instantiate_slot(inventory.get_slot(i + ctrl_slots_len))
 	
 
+var index := 0
 
 func instantiate_slot(slot: Slot) -> void:
+	for ctrl_slot in ctrl_inventory.ctrl_slots:
+		if ctrl_slot.slot == slot:
+			return
+
 	var ctrl_slot: Node = packed_slot.instantiate()
 
 	if not ctrl_slot is SlotControl:

@@ -1,132 +1,132 @@
-[gd_resource type="Resource" script_class="ArrayInventory" load_steps=30 format=3 uid="uid://dogr4i4htbm6m"]
+[gd_resource type="Resource" script_class="ArrayInventory" load_steps=30 format=3 uid="uid://bvjjfv2m3xyv3"]
 
-[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/inventory/inventories/array_inventory.gd" id="1_3a1wv"]
-[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/inventory/components/infinite_capacity.gd" id="1_icnvi"]
-[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/inventory/components/auto_saver.gd" id="2_3chn2"]
-[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/slot/slot.gd" id="4_04yav"]
-[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/stack.gd" id="5_jex1t"]
-[ext_resource type="Resource" uid="uid://chv7eflkjkmcf" path="res://examples/_shared/resources/items/ingots/iron_ingot.tres" id="5_obxw0"]
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/inventory/components/infinite_capacity.gd" id="1_pa62s"]
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/inventory/components/auto_saver.gd" id="2_1q4b0"]
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/inventory/inventories/array_inventory.gd" id="3_ksi36"]
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/slot/slot.gd" id="4_x4boh"]
+[ext_resource type="Resource" uid="uid://chv7eflkjkmcf" path="res://examples/_shared/resources/items/ingots/iron_ingot.tres" id="5_w4d4k"]
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/stack.gd" id="6_kdtym"]
 
 [sub_resource type="Resource" id="Resource_pjbgn"]
-script = ExtResource("1_icnvi")
+script = ExtResource("1_pa62s")
 empty_slot_threshold = 2
 amount_to_add = 5
 is_enabled = true
 
 [sub_resource type="Resource" id="Resource_3gmvv"]
-script = ExtResource("2_3chn2")
+script = ExtResource("2_1q4b0")
 path = ""
 is_enabled = true
 
-[sub_resource type="Resource" id="Resource_8rx7g"]
-script = ExtResource("5_jex1t")
-item = ExtResource("5_obxw0")
+[sub_resource type="Resource" id="Resource_utlrq"]
+script = ExtResource("6_kdtym")
+item = ExtResource("5_w4d4k")
 quantity = 64
 
 [sub_resource type="Resource" id="Resource_4j61g"]
-script = ExtResource("4_04yav")
-stack = SubResource("Resource_8rx7g")
+script = ExtResource("4_x4boh")
+stack = SubResource("Resource_utlrq")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
 name = ""
 
 [sub_resource type="Resource" id="Resource_x3r3t"]
-script = ExtResource("4_04yav")
+script = ExtResource("4_x4boh")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
 name = ""
 
 [sub_resource type="Resource" id="Resource_idu5b"]
-script = ExtResource("4_04yav")
+script = ExtResource("4_x4boh")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
 name = ""
 
 [sub_resource type="Resource" id="Resource_0jdkd"]
-script = ExtResource("4_04yav")
+script = ExtResource("4_x4boh")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
 name = ""
 
 [sub_resource type="Resource" id="Resource_wfsmx"]
-script = ExtResource("4_04yav")
+script = ExtResource("4_x4boh")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
 name = ""
 
 [sub_resource type="Resource" id="Resource_ybk28"]
-script = ExtResource("4_04yav")
+script = ExtResource("4_x4boh")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
 name = ""
 
 [sub_resource type="Resource" id="Resource_d7l8r"]
-script = ExtResource("4_04yav")
+script = ExtResource("4_x4boh")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
 name = ""
 
 [sub_resource type="Resource" id="Resource_8l165"]
-script = ExtResource("4_04yav")
+script = ExtResource("4_x4boh")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
 name = ""
 
 [sub_resource type="Resource" id="Resource_6ptb5"]
-script = ExtResource("4_04yav")
+script = ExtResource("4_x4boh")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
 name = ""
 
 [sub_resource type="Resource" id="Resource_lnthp"]
-script = ExtResource("4_04yav")
+script = ExtResource("4_x4boh")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
 name = ""
 
 [sub_resource type="Resource" id="Resource_jmnk0"]
-script = ExtResource("4_04yav")
+script = ExtResource("4_x4boh")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
 name = ""
 
 [sub_resource type="Resource" id="Resource_2f5js"]
-script = ExtResource("4_04yav")
+script = ExtResource("4_x4boh")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
 name = ""
 
 [sub_resource type="Resource" id="Resource_t8aad"]
-script = ExtResource("4_04yav")
+script = ExtResource("4_x4boh")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
 name = ""
 
 [sub_resource type="Resource" id="Resource_ao6hh"]
-script = ExtResource("4_04yav")
+script = ExtResource("4_x4boh")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
 name = ""
 
 [sub_resource type="Resource" id="Resource_xo7r4"]
-script = ExtResource("4_04yav")
+script = ExtResource("4_x4boh")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
 name = ""
 
 [sub_resource type="Resource" id="Resource_lag56"]
-script = ExtResource("4_04yav")
+script = ExtResource("4_x4boh")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
 name = ""
 
 [sub_resource type="Resource" id="Resource_ng8io"]
-script = ExtResource("4_04yav")
+script = ExtResource("4_x4boh")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
 name = ""
 
 [sub_resource type="Resource" id="Resource_fp4nx"]
-script = ExtResource("4_04yav")
+script = ExtResource("4_x4boh")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
 name = ""
 
 [sub_resource type="Resource" id="Resource_qg1i3"]
-script = ExtResource("4_04yav")
+script = ExtResource("4_x4boh")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
 name = ""
 
 [sub_resource type="Resource" id="Resource_hha35"]
-script = ExtResource("4_04yav")
+script = ExtResource("4_x4boh")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
 name = ""
 
 [resource]
-script = ExtResource("1_3a1wv")
-slots = Array[ExtResource("4_04yav")]([SubResource("Resource_4j61g"), SubResource("Resource_x3r3t"), SubResource("Resource_idu5b"), SubResource("Resource_0jdkd"), SubResource("Resource_wfsmx"), SubResource("Resource_ybk28"), SubResource("Resource_d7l8r"), SubResource("Resource_8l165"), SubResource("Resource_6ptb5"), SubResource("Resource_lnthp"), SubResource("Resource_jmnk0"), SubResource("Resource_2f5js"), SubResource("Resource_t8aad"), SubResource("Resource_ao6hh"), SubResource("Resource_xo7r4"), SubResource("Resource_lag56"), SubResource("Resource_ng8io"), SubResource("Resource_fp4nx"), SubResource("Resource_qg1i3"), SubResource("Resource_hha35")])
-auto_initialize = false
+script = ExtResource("3_ksi36")
+slots = Array[ExtResource("4_x4boh")]([SubResource("Resource_4j61g"), SubResource("Resource_x3r3t"), SubResource("Resource_idu5b"), SubResource("Resource_0jdkd"), SubResource("Resource_wfsmx"), SubResource("Resource_ybk28"), SubResource("Resource_d7l8r"), SubResource("Resource_8l165"), SubResource("Resource_6ptb5"), SubResource("Resource_lnthp"), SubResource("Resource_jmnk0"), SubResource("Resource_2f5js"), SubResource("Resource_t8aad"), SubResource("Resource_ao6hh"), SubResource("Resource_xo7r4"), SubResource("Resource_lag56"), SubResource("Resource_ng8io"), SubResource("Resource_fp4nx"), SubResource("Resource_qg1i3"), SubResource("Resource_hha35")])
+auto_initialize = true
 is_template = false
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/inventory/inventory_component.gd")]([SubResource("Resource_pjbgn"), SubResource("Resource_3gmvv")])

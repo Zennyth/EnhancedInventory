@@ -1,0 +1,118 @@
+[gd_scene load_steps=18 format=3 uid="uid://dlmqhwxvea0mi"]
+
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/inventory/inventory_manager.gd" id="1_3hip1"]
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/ctrl/inventory/ctrl_inventory.gd" id="1_5pypr"]
+[ext_resource type="Script" path="res://examples/multiplayer_inventories/multiplayer/multiplayer.gd" id="1_eecgp"]
+[ext_resource type="Resource" uid="uid://dogr4i4htbm6m" path="res://examples/_shared/resources/inventories/inventory.tres" id="2_r6ped"]
+[ext_resource type="PackedScene" uid="uid://d32auq1seu5e0" path="res://examples/_shared/scenes/SlotControl.tscn" id="3_12ueq"]
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/ctrl/inventory/components/slot_instantiator.gd" id="4_0am8w"]
+[ext_resource type="Texture2D" uid="uid://d2dbl83h5dtpu" path="res://examples/_shared/assets/mounirtohami - GUI/GUI.png" id="5_yld8y"]
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/ctrl/ctrl_drag.gd" id="6_yjwl3"]
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/slot/slot.gd" id="7_vgllm"]
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/drag.gd" id="8_lpgby"]
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/ctrl/slot/ctrl_slot.gd" id="9_170hf"]
+[ext_resource type="PackedScene" uid="uid://chil8hgaxjdp8" path="res://examples/_shared/scenes/StackControl.tscn" id="10_0wqrm"]
+
+[sub_resource type="Resource" id="Resource_o3e22"]
+script = ExtResource("4_0am8w")
+packed_slot = ExtResource("3_12ueq")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qpnty"]
+atlas = ExtResource("5_yld8y")
+region = Rect2(0, 96, 48, 32)
+
+[sub_resource type="LabelSettings" id="LabelSettings_m181y"]
+font_size = 21
+
+[sub_resource type="Resource" id="Resource_e6uvq"]
+script = ExtResource("7_vgllm")
+components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
+name = ""
+
+[sub_resource type="Resource" id="Resource_hk6b2"]
+script = ExtResource("8_lpgby")
+drag_slot = SubResource("Resource_e6uvq")
+
+[node name="Multiplayer" type="Node"]
+script = ExtResource("1_eecgp")
+
+[node name="MultiplayerInventories" type="CanvasLayer" parent="."]
+
+[node name="InventoryManager" type="Node" parent="MultiplayerInventories"]
+script = ExtResource("1_3hip1")
+_inventory = ExtResource("2_r6ped")
+auto_initialize = false
+
+[node name="Main" type="CenterContainer" parent="MultiplayerInventories"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MultiplayerInventories/Main"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Inventory" type="MarginContainer" parent="MultiplayerInventories/Main/HBoxContainer" node_paths=PackedStringArray("container", "inventory_manager")]
+layout_mode = 2
+script = ExtResource("1_5pypr")
+container = NodePath("MarginContainer/VBoxContainer/SlotsContainer")
+components = Array[Resource("res://addons/enhanced_inventory/scripts/ctrl/inventory/ctrl_inventory_component.gd")]([SubResource("Resource_o3e22")])
+mode = 1
+inventory_manager = NodePath("../../../InventoryManager")
+
+[node name="Background" type="NinePatchRect" parent="MultiplayerInventories/Main/HBoxContainer/Inventory"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_qpnty")
+region_rect = Rect2(0, 0, 48, 32)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="MultiplayerInventories/Main/HBoxContainer/Inventory"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MultiplayerInventories/Main/HBoxContainer/Inventory/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MultiplayerInventories/Main/HBoxContainer/Inventory/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Inventory"
+label_settings = SubResource("LabelSettings_m181y")
+horizontal_alignment = 1
+
+[node name="SlotsContainer" type="GridContainer" parent="MultiplayerInventories/Main/HBoxContainer/Inventory/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 150)
+layout_mode = 2
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+columns = 4
+
+[node name="DragControl" type="Control" parent="MultiplayerInventories"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("6_yjwl3")
+drag = SubResource("Resource_hk6b2")
+
+[node name="SlotControl" type="Control" parent="MultiplayerInventories/DragControl"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("9_170hf")
+
+[node name="StackControl" parent="MultiplayerInventories/DragControl/SlotControl" instance=ExtResource("10_0wqrm")]
+mouse_filter = 2
+
+[node name="Camera2D" type="Camera2D" parent="MultiplayerInventories"]
+position = Vector2(575, 324)

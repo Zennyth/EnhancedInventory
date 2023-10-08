@@ -13,11 +13,14 @@ func get_number_of_empty_slots() -> int:
 
 
 func _enable() -> void:
+	if !inventory.has_multiplayer_authority:
+		return
+
 	append_missing_slots()
 	SignalUtils.connect_if_not_connected(inventory.updated, append_missing_slots)
 
 func _disable() -> void:
-	inventory.updated.disconnect(append_missing_slots)
+	SignalUtils.disconnect_if_connected(inventory.updated, append_missing_slots)
 
 
 func append_missing_slots() -> void:

@@ -76,10 +76,13 @@ func bind_item() -> void:
 	quantity_changed.connect(sync_item_quantity)
 
 func unbind_item() -> void:
-	quantity_changed.disconnect(sync_item_quantity)
+	SignalUtils.disconnect_if_connected(quantity_changed, sync_item_quantity)
 	sync_item_quantity(0)
 
 func sync_item_quantity(_quantity: int = quantity) -> void:
+	if not is_instance_of(item, Item):
+		return
+
 	item.quantity = _quantity
 
 
@@ -104,3 +107,30 @@ func is_item_collectable() -> bool:
 
 func get_item_max_stack_size() -> int:
 	return item.max_stack_size if item != null else 0
+
+
+
+###
+# MULTIPLAYER
+###
+func is_equal(stack: Stack) -> bool:
+	if stack == null:
+		return false
+	
+	return quantity == stack.quantity and item == stack.item
+
+static func serialize(stack: Stack) -> Dictionary:
+	if stack == null:
+		return {}
+
+	return {
+		"item": stack.item.resource_path if not stack.is_empty() else null,
+		"quantity": stack.quantity
+	}
+
+static func deserialize(dictionary: Dictionary) -> Stack:
+	if dictionary.is_empty():
+		return null
+
+	var item: Item = load(dictionary.item) if dictionary.has("item") else null
+	return Stack.new(item, dictionary.quantity)

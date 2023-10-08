@@ -8,24 +8,15 @@ signal updated
 signal bounded_slot(slot: Slot)
 signal unbounded_slot(slot: Slot)
 
+@export var auto_initialize: bool = true
 
-###
-# CORE
-###
-var owner: Node
 
-func initialize_owner(_owner: Node) -> void:
-	owner = _owner
-	initialized_owner.emit()
-
-func initialize_slots() -> void:
+func initialize_slots() -> void:	
 	for slot in get_slots():
 		if slot == null:
 			continue
 
 		bind_slot(slot)
-
-
 
 func get_slot(_index: int) -> Slot:
 	return null
@@ -119,11 +110,52 @@ func pick_up_stack(stack: Stack) -> Stack:
 			break
 	
 	return stack
-		
-
-		
 
 
+
+###
+# INVENTORY_MANAGER & OWNER
+###
+var manager: InventoryManager
+var owner: Node
+
+## Define if the inventory is duplicated at runtime to easily create replicas of an inventory without modifying it at runtime
+@export var is_template: bool = true
+
+func get_instance() -> Inventory:
+	return duplicate(true) if is_template else self
+
+## Has the permission to modify and replicate its changes
+var has_authority: bool:
+	get: return manager.has_authority if manager != null else true
+var has_multiplayer_authority: bool:
+	get: return manager.has_multiplayer_authority if manager != null else true
+
+func initialize_manager(_manager: InventoryManager) -> void:
+	manager = _manager
+	owner = manager.owner
+	initialize()
+	initialized_owner.emit()
+
+
+
+
+###
+# CORE
+###
+signal initialized
+
+var is_initialized: bool = false
+
+func initialize() -> void:
+	if is_initialized:
+		return
+
+	initialize_slots()
+	initialize_inventory_components()
+	initialize_slot_components()
+	is_initialized = true
+	initialized.emit()
 
 ###
 # COMPONENTS
@@ -133,7 +165,6 @@ func pick_up_stack(stack: Stack) -> Stack:
 
 func set_components(value) -> void:
 	components = value
-	initialize_inventory_components()
 
 func initialize_inventory_components() -> void:
 	for component in components:
@@ -141,6 +172,7 @@ func initialize_inventory_components() -> void:
 			continue
 
 		component.initialize_inventory_component(self)
+
 
 
 ###
@@ -153,7 +185,6 @@ var slot_components: Array[SlotComponent] = []:
 
 func set_slot_components(value) -> void:
 	slot_components = value
-	initialize_slot_components()
 
 func initialize_slot_components() -> void:
 	pass

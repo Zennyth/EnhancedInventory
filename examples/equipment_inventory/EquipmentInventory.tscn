@@ -180,7 +180,3 @@ mouse_filter = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(575, 324)
-
-[node name="OptionButton" type="OptionButton" parent="."]
-offset_right = 45.0
-offset_bottom = 20.0

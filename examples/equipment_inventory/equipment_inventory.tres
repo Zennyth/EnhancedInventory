@@ -87,4 +87,6 @@ icon = ExtResource("12_juiwm")
 [resource]
 script = ExtResource("3_fbuqs")
 slots = Array[ExtResource("4_hvvmo")]([SubResource("Resource_k7xov"), SubResource("Resource_verwu"), SubResource("Resource_7ysie"), SubResource("Resource_bwq31"), SubResource("Resource_8nruf"), SubResource("Resource_ojpv3")])
+auto_initialize = true
+is_template = null
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/inventory/inventory_component.gd")]([SubResource("Resource_3gmvv")])
