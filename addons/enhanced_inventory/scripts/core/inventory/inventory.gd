@@ -8,8 +8,6 @@ signal updated
 signal bounded_slot(slot: Slot)
 signal unbounded_slot(slot: Slot)
 
-@export var auto_initialize: bool = true
-
 
 func initialize_slots() -> void:	
 	for i in get_indexes():
@@ -33,7 +31,7 @@ func set_slot(index: int, slot: Slot) -> void:
 	if slot == null:
 		return push_warning("Can't set null slot at index: ", index)
 	
-	slot.index = index
+	slot.bind_to_inventory(index, self)
 	bind_slot(slot)
 
 func bind_slot(slot: Slot) -> void:
@@ -136,7 +134,7 @@ var has_multiplayer_authority: bool:
 
 func initialize_manager(_manager: InventoryManager) -> void:
 	manager = _manager
-	owner = manager.owner
+	owner = manager.inventory_owner
 	initialize()
 	initialized_owner.emit()
 

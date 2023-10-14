@@ -8,6 +8,7 @@ signal stack_added(stack: Stack)
 signal stack_removed(stack: Stack)
 
 var index: int = -1
+var inventory: Inventory
 
 @export var stack: Stack:
 	set(_stack):
@@ -22,6 +23,9 @@ func bind_stack() -> void:
 	if stack == null:
 		return
 	
+	if not stack.is_empty():
+		stack.get_item().bind_to_inventory(inventory)
+
 	SignalUtils.connect_if_not_connected(stack.updated, update)
 	stack_added.emit(stack)
 	
@@ -140,7 +144,6 @@ func initialize_slot_component(component: SlotComponent) -> void:
 	_component.initialize_slot_component(self)
 	_components.append(_component)
 
-
 func has_component(component_class) -> bool:
 	return _components.any(func(component: SlotComponent): return is_instance_of(component, component_class))
 
@@ -150,6 +153,17 @@ func get_component(component_class) -> SlotComponent:
 			return component
 	
 	return null
+
+
+###
+# INVENTORY
+###
+func bind_to_inventory(_index: int, _inventory: Inventory) -> void:
+	index = _index
+	inventory = _inventory
+
+	if stack != null and not stack.is_empty():
+		stack.get_item().bind_to_inventory(inventory)
 
 
 ###

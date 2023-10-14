@@ -1,7 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://chvbqh7700a73"]
+[gd_scene load_steps=21 format=3 uid="uid://chvbqh7700a73"]
 
 [ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/ctrl/inventory/ctrl_inventory.gd" id="1_2dgik"]
-[ext_resource type="Resource" uid="uid://dogr4i4htbm6m" path="res://examples/_shared/resources/inventories/inventory.tres" id="2_p7w4e"]
+[ext_resource type="Resource" uid="uid://6kslxu2o360y" path="res://examples/_shared/resources/inventories/inventory.tres" id="2_p7w4e"]
 [ext_resource type="PackedScene" uid="uid://d32auq1seu5e0" path="res://examples/_shared/scenes/SlotControl.tscn" id="3_jgxc7"]
 [ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/ctrl/inventory/components/slot_instantiator.gd" id="4_wlpm8"]
 [ext_resource type="Texture2D" uid="uid://d2dbl83h5dtpu" path="res://examples/_shared/assets/mounirtohami - GUI/GUI.png" id="5_2wwo4"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/drag.gd" id="8_kmhgd"]
 [ext_resource type="PackedScene" uid="uid://chil8hgaxjdp8" path="res://examples/_shared/scenes/StackControl.tscn" id="10_clmpc"]
 [ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/ctrl/slot/ctrl_slot.gd" id="10_qf7th"]
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/inventory/inventory_manager.gd" id="14_hgy8x"]
 
 [sub_resource type="Resource" id="Resource_o3e22"]
 script = ExtResource("4_wlpm8")
@@ -37,7 +38,14 @@ name = ""
 script = ExtResource("8_kmhgd")
 drag_slot = SubResource("Resource_e6uvq")
 
-[node name="MirrorInventories" type="CanvasLayer"]
+[node name="EquipmentInventory" type="CanvasLayer"]
+
+[node name="Owner" type="Node" parent="."]
+
+[node name="EquipmentInventoryManager" type="Node" parent="." node_paths=PackedStringArray("inventory_owner")]
+script = ExtResource("14_hgy8x")
+_inventory = ExtResource("6_lw3mk")
+inventory_owner = NodePath("../Owner")
 
 [node name="Main" type="CenterContainer" parent="."]
 anchors_preset = 15
@@ -90,13 +98,14 @@ theme_override_constants/h_separation = 5
 theme_override_constants/v_separation = 5
 columns = 4
 
-[node name="EquipmentInventory" type="MarginContainer" parent="Main/HBoxContainer" node_paths=PackedStringArray("container")]
+[node name="EquipmentInventory" type="MarginContainer" parent="Main/HBoxContainer" node_paths=PackedStringArray("container", "inventory_manager")]
 layout_mode = 2
 script = ExtResource("1_2dgik")
 container = NodePath("MarginContainer/VBoxContainer/SlotsContainer")
 sync_in_editor = true
 ctrl_slot_components = Array[Resource("res://addons/enhanced_inventory/scripts/ctrl/slot/ctrl_slot_component.gd")]([SubResource("Resource_1i16k")])
-inventory = ExtResource("6_lw3mk")
+mode = 1
+inventory_manager = NodePath("../../../EquipmentInventoryManager")
 
 [node name="Background" type="NinePatchRect" parent="Main/HBoxContainer/EquipmentInventory"]
 layout_mode = 2

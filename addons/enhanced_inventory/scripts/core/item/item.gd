@@ -34,6 +34,14 @@ func get_instance() -> Item:
 ###
 # INITIALIZATION
 ###
+signal bound_to_inventory()
+
+var inventory: Inventory
+
+func bind_to_inventory(_inventory: Inventory) -> void:
+	inventory = _inventory
+	bound_to_inventory.emit()
+	initialize_item()
 
 func initialize_item() -> void:
 	initialize_item_components()

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ArrayInventory" load_steps=31 format=3 uid="uid://6kslxu2o360y"]
+[gd_resource type="Resource" script_class="ArrayInventory" load_steps=30 format=3 uid="uid://6kslxu2o360y"]
 
 [ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/inventory/inventories/array_inventory.gd" id="1_3a1wv"]
 [ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/inventory/components/infinite_capacity.gd" id="1_icnvi"]
@@ -29,14 +29,8 @@ stack = SubResource("Resource_578j5")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
 name = ""
 
-[sub_resource type="Resource" id="Resource_ktuwb"]
-script = ExtResource("5_jex1t")
-item = ExtResource("5_obxw0")
-quantity = 32
-
 [sub_resource type="Resource" id="Resource_x3r3t"]
 script = ExtResource("4_04yav")
-stack = SubResource("Resource_ktuwb")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
 name = ""
 
@@ -133,6 +127,5 @@ name = ""
 [resource]
 script = ExtResource("1_3a1wv")
 slots = Array[ExtResource("4_04yav")]([SubResource("Resource_4j61g"), SubResource("Resource_x3r3t"), SubResource("Resource_idu5b"), SubResource("Resource_0jdkd"), SubResource("Resource_wfsmx"), SubResource("Resource_ybk28"), SubResource("Resource_d7l8r"), SubResource("Resource_8l165"), SubResource("Resource_6ptb5"), SubResource("Resource_lnthp"), SubResource("Resource_jmnk0"), SubResource("Resource_2f5js"), SubResource("Resource_t8aad"), SubResource("Resource_ao6hh"), SubResource("Resource_xo7r4"), SubResource("Resource_lag56"), SubResource("Resource_ng8io"), SubResource("Resource_fp4nx"), SubResource("Resource_qg1i3"), SubResource("Resource_hha35")])
-auto_initialize = false
 is_template = false
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/inventory/inventory_component.gd")]([SubResource("Resource_pjbgn"), SubResource("Resource_3gmvv")])

@@ -1,21 +1,15 @@
-[gd_scene load_steps=18 format=3 uid="uid://dlmqhwxvea0mi"]
+[gd_scene load_steps=15 format=3 uid="uid://dlmqhwxvea0mi"]
 
 [ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/inventory/inventory_manager.gd" id="1_3hip1"]
 [ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/ctrl/inventory/ctrl_inventory.gd" id="1_5pypr"]
 [ext_resource type="Script" path="res://examples/multiplayer_inventories/multiplayer/multiplayer.gd" id="1_eecgp"]
-[ext_resource type="PackedScene" uid="uid://d32auq1seu5e0" path="res://examples/_shared/scenes/SlotControl.tscn" id="3_12ueq"]
 [ext_resource type="Resource" uid="uid://b0fu4gbpl2il" path="res://examples/multiplayer_inventories/mini_inventory_template.tres" id="3_ijb10"]
-[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/ctrl/inventory/components/slot_instantiator.gd" id="4_0am8w"]
 [ext_resource type="Texture2D" uid="uid://d2dbl83h5dtpu" path="res://examples/_shared/assets/mounirtohami - GUI/GUI.png" id="5_yld8y"]
 [ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/ctrl/ctrl_drag.gd" id="6_yjwl3"]
 [ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/slot/slot.gd" id="7_vgllm"]
 [ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/drag.gd" id="8_lpgby"]
 [ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/ctrl/slot/ctrl_slot.gd" id="9_170hf"]
 [ext_resource type="PackedScene" uid="uid://chil8hgaxjdp8" path="res://examples/_shared/scenes/StackControl.tscn" id="10_0wqrm"]
-
-[sub_resource type="Resource" id="Resource_o3e22"]
-script = ExtResource("4_0am8w")
-packed_slot = ExtResource("3_12ueq")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qpnty"]
 atlas = ExtResource("5_yld8y")
@@ -58,10 +52,9 @@ alignment = 1
 [node name="Inventory" type="MarginContainer" parent="MultiplayerInventories/Main/HBoxContainer" node_paths=PackedStringArray("container", "inventory_manager")]
 layout_mode = 2
 script = ExtResource("1_5pypr")
-container = NodePath("MarginContainer/VBoxContainer/SlotsContainer")
-components = Array[Resource("res://addons/enhanced_inventory/scripts/ctrl/inventory/ctrl_inventory_component.gd")]([SubResource("Resource_o3e22")])
+container = NodePath("")
 mode = 1
-inventory_manager = NodePath("../../../InventoryManager")
+inventory_manager = NodePath("")
 
 [node name="Background" type="NinePatchRect" parent="MultiplayerInventories/Main/HBoxContainer/Inventory"]
 layout_mode = 2

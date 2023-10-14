@@ -23,7 +23,7 @@ func set_item(_item: Item) -> void:
 	if item != null:
 		unbind_item()
 
-	item = _item
+	item = _item.get_instance() if _item != null else null
 
 	if item != null:
 		bind_item()

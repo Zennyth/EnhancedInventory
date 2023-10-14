@@ -1,7 +1,11 @@
-[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://chv7eflkjkmcf"]
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://chv7eflkjkmcf"]
 
 [ext_resource type="Texture2D" uid="uid://bvglxn6gp7rnq" path="res://examples/_shared/assets/Krise Icon pack/ingot_01c.png" id="1_tlw7o"]
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/item/components/category_item_component.gd" id="1_y0cfd"]
 [ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/item/item.gd" id="2_unstl"]
+
+[sub_resource type="Resource" id="Resource_42ciw"]
+script = ExtResource("1_y0cfd")
 
 [resource]
 script = ExtResource("2_unstl")
@@ -12,4 +16,4 @@ description = "A solid bar of cold, gray iron. Sturdy and versatile, it's the ba
 is_collectable = true
 is_stackable = true
 max_stack_size = 64
-components = Array[Resource("res://addons/enhanced_inventory/scripts/core/item/item_component.gd")]([])
+components = Array[Resource("res://addons/enhanced_inventory/scripts/core/item/item_component.gd")]([SubResource("Resource_42ciw")])
