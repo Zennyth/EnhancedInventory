@@ -3,7 +3,6 @@
 extends Resource
 class_name Inventory
 
-signal initialized_owner
 signal updated
 signal bounded_slot(slot: Slot)
 signal unbounded_slot(slot: Slot)
@@ -53,8 +52,6 @@ func length() -> int:
 
 func get_indexes() -> Array[int]:
 	return []
-
-
 
 
 ###
@@ -113,32 +110,14 @@ func pick_up_stack(stack: Stack) -> Stack:
 	return stack
 
 
-
 ###
 # INVENTORY_MANAGER & OWNER
 ###
-var manager: InventoryManager
-var owner: Node
-
 ## Define if the inventory is duplicated at runtime to easily create replicas without modifying the template
 @export var is_template: bool = true
 
 func get_instance() -> Inventory:
 	return duplicate(true) if is_template else self
-
-## Has the permission to modify and replicate its changes
-var has_authority: bool:
-	get: return manager.has_authority if manager != null else true
-var has_multiplayer_authority: bool:
-	get: return manager.has_multiplayer_authority if manager != null else true
-
-func initialize_manager(_manager: InventoryManager) -> void:
-	manager = _manager
-	owner = manager.inventory_owner
-	initialize()
-	initialized_owner.emit()
-
-
 
 
 ###
@@ -154,9 +133,9 @@ func initialize() -> void:
 
 	initialize_slots()
 	initialize_inventory_components()
-	initialize_slot_components()
 	is_initialized = true
 	initialized.emit()
+
 
 ###
 # COMPONENTS
@@ -175,27 +154,11 @@ func initialize_inventory_components() -> void:
 		component.initialize_inventory_component(self)
 
 
-
 ###
 # SLOT COMPONENTS
 ###
-var run_time_slot_components: Array[SlotComponent]
-
 var slot_components: Array[SlotComponent] = []:
 	set = set_slot_components
 
 func set_slot_components(value) -> void:
 	slot_components = value
-
-func initialize_slot_components() -> void:
-	pass
-	# run_time_slot_components = []
-
-	# for slot in get_slots():
-	# 	for component in slot_components:
-	# 		if component == null:
-	# 			continue
-			
-	# 		var duplicated_component = component.duplicate(true)
-	# 		duplicated_component.initialize_slot_component(slot)
-	# 		run_time_slot_components.append(duplicated_component)

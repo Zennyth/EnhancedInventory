@@ -3,8 +3,6 @@
 extends Resource
 class_name Item
 
-
-@export var id: String = ""
 @export var name: String = ""
 @export var icon: Texture2D
 @export_multiline var description: String = ""
@@ -17,57 +15,10 @@ class_name Item
 	set(size):
 		max_stack_size = size if is_stackable else 1
 
-
-###
-# INTERFACE
-###
-func equals_to(item: Item) -> bool:
-	return id == item.id
-
-func get_instance() -> Item:
-	var item: Item = duplicate(true)
-	item.initialize_item()
-	return item
-
-
-
-###
-# INITIALIZATION
-###
-signal bound_to_inventory()
-
-var inventory: Inventory
-
-func bind_to_inventory(_inventory: Inventory) -> void:
-	inventory = _inventory
-	bound_to_inventory.emit()
-	initialize_item()
-
-func initialize_item() -> void:
-	initialize_item_components()
-
-
-###
-# STACK BINIDING
-###
-signal quantity_changed()
-
-var quantity: int:
-	set = set_quantity
-
-func set_quantity(_quantity: int) -> void:
-	quantity = _quantity
-	quantity_changed.emit()
-
-
 ###
 # COMPONENTS
 ###
 @export var components: Array[ItemComponent] = []
-
-func initialize_item_components() -> void:
-	for component in components:
-		component.initialize_item_component(self)
 
 func has_component(component_class) -> bool:
 	return components.any(func(component: ItemComponent): return is_instance_of(component, component_class))

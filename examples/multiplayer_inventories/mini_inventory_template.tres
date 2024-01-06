@@ -34,6 +34,5 @@ name = ""
 [resource]
 script = ExtResource("3_po84k")
 slots = Array[ExtResource("4_2tthp")]([SubResource("Resource_4j61g"), SubResource("Resource_x3r3t"), SubResource("Resource_idu5b"), SubResource("Resource_0jdkd")])
-auto_initialize = true
 is_template = true
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/inventory/inventory_component.gd")]([])

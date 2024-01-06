@@ -27,7 +27,15 @@ func set_inventory(value) -> void:
 
 
 ## Still an experimental feature, use it at your own risks
-@export var sync_in_editor: bool = false
+@export var sync_in_editor: bool = false:
+	set = set_sync_in_editor
+
+func set_sync_in_editor(value: bool) -> void:
+	sync_in_editor = value
+
+	if is_node_ready():
+		initialize()
+
 var is_initializable: bool:
 	get: return (!Engine.is_editor_hint() or sync_in_editor) and !is_initialized
 var is_initialized: bool = false
@@ -67,7 +75,11 @@ func add_ctrl_slot(slot: Slot, ctrl_slot: SlotControl) -> void:
 	
 	bounded_ctrl_slot.emit(ctrl_slot)
 
+
 func _ready() -> void:
+	initialize()	
+
+func initialize() -> void:
 	if !is_initializable:
 		return
 
@@ -89,8 +101,6 @@ func _ready() -> void:
 
 	bind_slots_to_ctrl_slots()
 	EnhancedInventoryEventBus.initialize_inventory_control(self)
-
-
 
 func bind_slots_to_ctrl_slots() -> void:
 	if inventory == null:

@@ -3,40 +3,33 @@
 extends Resource
 class_name Stack
 
+
 signal updated
 signal item_changed
 signal quantity_changed
 
-
-func _init(_item: Item = null, _quantity: int = -1) -> void:
-	if _item != null:
-		item = _item
-	
-	if _quantity != -1:
-		quantity = _quantity
-
-
-@export var item: Item:
+# @export
+var item: Item:
 	set = set_item
 
+@export var quantity: int:
+	set = set_quantity
+
+
+func _init(_item: Item = null, _quantity: int = 0) -> void:
+	item = _item
+	quantity = _quantity
+
+
 func set_item(_item: Item) -> void:
-	if item != null:
-		unbind_item()
-
-	item = _item.get_instance() if _item != null else null
-
-	if item != null:
-		bind_item()
-	
+	item = _item
 	item_changed.emit()
 	update()
 
-
-@export var quantity: int:
-	set(_quantity):
-		quantity = _quantity
-		quantity_changed.emit()
-		update()
+func set_quantity(_quantity: int):
+	quantity = _quantity
+	quantity_changed.emit()
+	update()
 
 func update() -> void:
 	updated.emit()
@@ -66,24 +59,6 @@ func split() -> int:
 	quantity = split_quantity + remaining_odd
 
 	return split_quantity
-
-
-###
-# STACK BINIDING
-###
-func bind_item() -> void:
-	sync_item_quantity()
-	quantity_changed.connect(sync_item_quantity)
-
-func unbind_item() -> void:
-	SignalUtils.disconnect_if_connected(quantity_changed, sync_item_quantity)
-	sync_item_quantity(0)
-
-func sync_item_quantity(_quantity: int = quantity) -> void:
-	if not is_instance_of(item, Item):
-		return
-
-	item.quantity = _quantity
 
 
 ###
@@ -134,3 +109,10 @@ static func deserialize(dictionary: Dictionary) -> Stack:
 
 	var item: Item = load(dictionary.item) if dictionary.has("item") else null
 	return Stack.new(item, dictionary.quantity)
+
+func _get_property_list():
+	var properties = []
+
+	properties.append({ "name": "item", "class_name": &"Item", "type": 24, "hint": 17, "hint_string": "Item", "usage": 4102 | PROPERTY_USAGE_NEVER_DUPLICATE })
+
+	return properties

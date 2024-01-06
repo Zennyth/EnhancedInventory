@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ArrayInventory" load_steps=30 format=3 uid="uid://6kslxu2o360y"]
+[gd_resource type="Resource" script_class="ArrayInventory" load_steps=36 format=3 uid="uid://c0rj3lb7swsu7"]
 
 [ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/inventory/inventories/array_inventory.gd" id="1_3a1wv"]
 [ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/inventory/components/infinite_capacity.gd" id="1_icnvi"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/slot/slot.gd" id="4_04yav"]
 [ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/stack.gd" id="5_jex1t"]
 [ext_resource type="Resource" uid="uid://chv7eflkjkmcf" path="res://examples/_shared/resources/items/ingots/iron_ingot.tres" id="5_obxw0"]
+[ext_resource type="Script" path="res://examples/_shared/scripts/equipment_item_component.gd" id="7_bdatq"]
+[ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/core/item/item.gd" id="8_7ipja"]
 
 [sub_resource type="Resource" id="Resource_pjbgn"]
 script = ExtResource("1_icnvi")
@@ -20,8 +22,8 @@ is_enabled = true
 
 [sub_resource type="Resource" id="Resource_578j5"]
 script = ExtResource("5_jex1t")
+quantity = 48
 item = ExtResource("5_obxw0")
-quantity = 64
 
 [sub_resource type="Resource" id="Resource_4j61g"]
 script = ExtResource("4_04yav")
@@ -79,8 +81,31 @@ script = ExtResource("4_04yav")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
 name = ""
 
+[sub_resource type="Resource" id="Resource_srs0f"]
+script = ExtResource("7_bdatq")
+equipment_type = 4
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_augja"]
+load_path = "res://.godot/imported/sword_01a.png-207efcb9b66dbee7470679469eb2a0aa.ctex"
+
+[sub_resource type="Resource" id="Resource_u7v2d"]
+script = ExtResource("8_7ipja")
+name = "Wooden Sword"
+icon = SubResource("CompressedTexture2D_augja")
+description = "A rudimentary blade carved from aged timber. While it might not be the sharpest weapon in the armory, it has helped many novice adventurers start their journey."
+is_collectable = true
+is_stackable = false
+max_stack_size = 1
+components = Array[Resource("res://addons/enhanced_inventory/scripts/core/item/item_component.gd")]([SubResource("Resource_srs0f")])
+
+[sub_resource type="Resource" id="Resource_wuwdp"]
+script = ExtResource("5_jex1t")
+quantity = 1
+item = SubResource("Resource_u7v2d")
+
 [sub_resource type="Resource" id="Resource_2f5js"]
 script = ExtResource("4_04yav")
+stack = SubResource("Resource_wuwdp")
 components = Array[Resource("res://addons/enhanced_inventory/scripts/core/slot/slot_component.gd")]([])
 name = ""
 

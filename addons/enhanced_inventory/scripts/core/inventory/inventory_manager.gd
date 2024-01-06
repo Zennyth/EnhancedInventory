@@ -1,3 +1,4 @@
+@tool
 @icon("res://addons/enhanced_inventory/icons/icons8-backpack-24.png")
 extends Node
 class_name InventoryManager
@@ -42,24 +43,14 @@ func initialize() -> void:
 	has_multiplayer_authority = inventory_owner.is_multiplayer_authority()
 	has_authority = !lock_to_autorithy or has_multiplayer_authority
 	
-	inventory.initialize_manager(self)
-	
 	if has_authority:
 		initialize_multiplayer_replication()
-
 	
-	
-
-
-
+	inventory.initialize()
 
 func initialize_multiplayer_replication() -> void:
-	for slot in inventory.get_slots():
-		slot.updated.connect(_on_slot_updated.bind(slot))
-	
 	inventory.bounded_slot.connect(_on_bounded_slot)
 	inventory.unbounded_slot.connect(_on_unbounded_slot)
-
 
 
 ###
@@ -89,6 +80,7 @@ func _on_unbounded_slot(slot: Slot) -> void:
 @rpc("any_peer")
 func unbind_slot(slot_index: int) -> void:
 	inventory.slots.remove_at(slot_index)
+
 
 ###
 # UPDATE SLOT

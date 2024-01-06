@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=3 uid="uid://chvbqh7700a73"]
 
 [ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/ctrl/inventory/ctrl_inventory.gd" id="1_2dgik"]
-[ext_resource type="Resource" uid="uid://6kslxu2o360y" path="res://examples/_shared/resources/inventories/inventory.tres" id="2_p7w4e"]
+[ext_resource type="Resource" uid="uid://c0rj3lb7swsu7" path="res://examples/_shared/resources/inventories/inventory.tres" id="2_p7w4e"]
 [ext_resource type="PackedScene" uid="uid://d32auq1seu5e0" path="res://examples/_shared/scenes/SlotControl.tscn" id="3_jgxc7"]
 [ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/ctrl/inventory/components/slot_instantiator.gd" id="4_wlpm8"]
 [ext_resource type="Texture2D" uid="uid://d2dbl83h5dtpu" path="res://examples/_shared/assets/mounirtohami - GUI/GUI.png" id="5_2wwo4"]
@@ -63,6 +63,7 @@ alignment = 1
 layout_mode = 2
 script = ExtResource("1_2dgik")
 container = NodePath("MarginContainer/VBoxContainer/SlotsContainer")
+sync_in_editor = true
 components = Array[Resource("res://addons/enhanced_inventory/scripts/ctrl/inventory/ctrl_inventory_component.gd")]([SubResource("Resource_o3e22")])
 inventory = ExtResource("2_p7w4e")
 

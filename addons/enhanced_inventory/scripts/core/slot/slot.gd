@@ -3,9 +3,11 @@
 extends Resource
 class_name Slot
 
+
 signal updated
 signal stack_added(stack: Stack)
 signal stack_removed(stack: Stack)
+
 
 var index: int = -1
 var inventory: Inventory
@@ -23,9 +25,6 @@ func bind_stack() -> void:
 	if stack == null:
 		return
 	
-	if not stack.is_empty():
-		stack.get_item().bind_to_inventory(inventory)
-
 	SignalUtils.connect_if_not_connected(stack.updated, update)
 	stack_added.emit(stack)
 	
@@ -47,7 +46,7 @@ func accepts_item(item: Item) -> bool:
 	return components.all(func(component: SlotComponent): return component.accepts_item(item))
 
 func accepts_stack(stack: Stack) -> bool:
-	return accepts_item(stack.item) and (is_empty() or (is_item_stackable() and get_item().equals_to(stack.get_item())))
+	return accepts_item(stack.item) and (is_empty() or (is_item_stackable() and get_item() == stack.get_item()))
 
 func accepts_slot(slot: Slot) -> bool:
 	return slot.is_empty() or accepts_stack(slot.stack)
@@ -68,7 +67,7 @@ func unload_stack(target: Stack) -> int:
 		return -1
 	
 	if !is_empty():
-		if !is_item_stackable() or !get_item().equals_to(target.get_item()):
+		if !is_item_stackable() or get_item() != target.get_item():
 			return -1
 		
 		return stack.fill_to(target.quantity)
@@ -90,7 +89,7 @@ func split_stack(target: Slot) -> bool:
 		return false
 	
 	if not is_empty():
-		if !get_item().equals_to(target.get_item()):
+		if get_item() != target.get_item():
 			return false
 		
 		var split_quantity := target.stack.split()
@@ -122,6 +121,7 @@ func unload_slot(target: Slot) -> int:
 		target.stack = null
 	
 	return res
+
 
 ###
 # COMPONENTS
@@ -161,9 +161,6 @@ func get_component(component_class) -> SlotComponent:
 func bind_to_inventory(_index: int, _inventory: Inventory) -> void:
 	index = _index
 	inventory = _inventory
-
-	if stack != null and not stack.is_empty():
-		stack.get_item().bind_to_inventory(inventory)
 
 
 ###

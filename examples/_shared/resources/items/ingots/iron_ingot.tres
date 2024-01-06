@@ -9,7 +9,6 @@ script = ExtResource("1_y0cfd")
 
 [resource]
 script = ExtResource("2_unstl")
-id = "d9d20b80-3d1e-476e-a24e-94b2a10cabfb"
 name = "Iron Ingot"
 icon = ExtResource("1_tlw7o")
 description = "A solid bar of cold, gray iron. Sturdy and versatile, it's the backbone of many crafts, embodying strength and resilience."

@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Enhanced Inventory"
 config/tags=PackedStringArray("addon")
-run/main_scene="res://examples/equipment_inventory/EquipmentInventory.tscn"
+run/main_scene="res://examples/multiplayer_inventories/MultiplayerInventories.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.png"
 

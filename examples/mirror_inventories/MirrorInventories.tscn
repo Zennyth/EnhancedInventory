@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://cp244egylf5rk"]
 
 [ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/ctrl/inventory/ctrl_inventory.gd" id="1_7lfgv"]
-[ext_resource type="Resource" uid="uid://dogr4i4htbm6m" path="res://examples/_shared/resources/inventories/inventory.tres" id="2_faysm"]
+[ext_resource type="Resource" uid="uid://c0rj3lb7swsu7" path="res://examples/_shared/resources/inventories/inventory.tres" id="2_faysm"]
 [ext_resource type="PackedScene" uid="uid://d32auq1seu5e0" path="res://examples/_shared/scenes/SlotControl.tscn" id="3_g5eyf"]
 [ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/ctrl/inventory/components/slot_instantiator.gd" id="4_raq0f"]
 [ext_resource type="Script" path="res://addons/enhanced_inventory/scripts/ctrl/ctrl_drag.gd" id="5_6soe5"]

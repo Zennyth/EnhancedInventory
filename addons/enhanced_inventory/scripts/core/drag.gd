@@ -1,6 +1,7 @@
 extends Resource
 class_name Drag
 
+
 @export var drag_slot: Slot = Slot.new():
 	set = set_drag_slot
 
